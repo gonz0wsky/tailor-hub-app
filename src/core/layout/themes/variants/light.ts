@@ -6,6 +6,9 @@ export const palette = {
   grey: tokens.color.theme_light_grey,
   pastel_blue: tokens.color.theme_light_pastel_blue,
   white: tokens.color.theme_light_white,
+
+  black_60: `${tokens.color.theme_light_black}60`,
+  white_60: `${tokens.color.theme_light_white}60`,
 } as const;
 
 export const theme = {
@@ -34,6 +37,20 @@ export const theme = {
         text: {
           primary: { color: palette.black },
           secondary: { color: palette.black },
+        },
+      },
+      textinput: {
+        border: {
+          primary: { borderColor: palette.black },
+          secondary: { borderColor: palette.white },
+        },
+        text: {
+          primary: { color: palette.black },
+          secondary: { color: palette.white },
+        },
+        placeholder: {
+          primary: { color: palette.black_60 },
+          secondary: { color: palette.white_60 },
         },
       },
     },

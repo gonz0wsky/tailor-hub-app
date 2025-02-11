@@ -254,6 +254,11 @@ export const atoms = {
     fontFamily: tokens.font.bold,
     fontSize: tokens.fontSize.md,
   },
+  font_s_semibold: {
+    fontWeight: tokens.fontWeight.semibold,
+    fontFamily: tokens.font.bold,
+    fontSize: tokens.fontSize._3xl,
+  },
   font_s_regular: {
     fontWeight: tokens.fontWeight.normal,
     fontFamily: tokens.font.regular,
@@ -711,6 +716,9 @@ export const atoms = {
   mb_auto: {
     marginBottom: tokens.space.auto,
   },
+  mb_safe: (bottom: number, minSpacing: number) => ({
+    marginBottom: Math.max(bottom, minSpacing),
+  }),
   ml_2xs: {
     marginLeft: tokens.space._2xs,
   },

@@ -1,25 +1,25 @@
-import {Platform} from 'react-native';
+import { Platform } from "react-native";
 
-export function web(value: unknown) {
-  return Platform.select({
+export function web<T = unknown>(value: T) {
+  return Platform.select<T>({
     web: value,
   });
 }
 
-export function ios(value: unknown) {
-  return Platform.select({
+export function ios<T = unknown>(value: T) {
+  return Platform.select<T>({
     ios: value,
   });
 }
 
-export function android(value: unknown) {
-  return Platform.select({
+export function android<T = unknown>(value: T) {
+  return Platform.select<T>({
     android: value,
   });
 }
 
-export function native(value: unknown) {
-  return Platform.select({
+export function native<T = unknown>(value: T) {
+  return Platform.select<T>({
     native: value,
   });
 }
