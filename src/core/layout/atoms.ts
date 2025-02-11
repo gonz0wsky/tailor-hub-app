@@ -115,6 +115,9 @@ export const atoms = {
   rounded_lg: {
     borderRadius: tokens.borderRadius.lg,
   },
+  rounded_xl: {
+    borderRadius: tokens.borderRadius.xl,
+  },
   rounded_full: {
     borderRadius: tokens.borderRadius.full,
   },
@@ -250,6 +253,11 @@ export const atoms = {
     fontWeight: tokens.fontWeight.semibold,
     fontFamily: tokens.font.bold,
     fontSize: tokens.fontSize.md,
+  },
+  font_s_regular: {
+    fontWeight: tokens.fontWeight.normal,
+    fontFamily: tokens.font.regular,
+    fontSize: tokens.fontSize._3xl,
   },
 
   /*
