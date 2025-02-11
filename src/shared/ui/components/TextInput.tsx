@@ -15,18 +15,20 @@ type Props = {
   placeholder?: string;
   style?: ViewStyle;
   testID?: string;
-  type?: "text" | "textarea" | "password";
+  type?: "text" | "textarea" | "password" | "email";
   variant?: "primary" | "secondary";
 };
 
 const inputStyle: Record<NonNullable<Props["type"]>, TextStyle[]> = {
+  email: [],
   password: [],
   text: [],
   textarea: [{ height: 128 }],
 } as const;
 
 const inputProps: Record<NonNullable<Props["type"]>, RNTextInput["props"]> = {
-  password: {},
+  email: { keyboardType: "email-address" },
+  password: { secureTextEntry: true },
   text: {},
   textarea: { multiline: true, numberOfLines: 4 },
 } as const;

@@ -38,6 +38,10 @@ export const theme = {
           primary: { color: palette.black },
           secondary: { color: palette.black },
         },
+        icon: {
+          primary: { color: palette.white },
+          secondary: { color: palette.black },
+        },
       },
       textinput: {
         border: {

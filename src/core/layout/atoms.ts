@@ -1,17 +1,17 @@
-import * as tokens from '@core/layout/tokens';
+import * as tokens from "@core/layout/tokens";
 
 export const atoms = {
   /*
    * Positioning
    */
   fixed: {
-    position: 'fixed',
+    position: "fixed",
   },
   absolute: {
-    position: 'absolute',
+    position: "absolute",
   },
   relative: {
-    position: 'relative',
+    position: "relative",
   },
   top_0: {
     top: 0,
@@ -54,17 +54,17 @@ export const atoms = {
   },
 
   overflow_hidden: {
-    overflow: 'hidden',
+    overflow: "hidden",
   },
 
   /*
    * Width
    */
   w_full: {
-    width: '100%',
+    width: "100%",
   },
   h_full: {
-    height: '100%',
+    height: "100%",
   },
   h_2xs: {
     height: tokens.space._2xs,
@@ -156,16 +156,16 @@ export const atoms = {
     gap: tokens.space._5xl,
   },
   flex: {
-    display: 'flex',
+    display: "flex",
   },
   flex_col: {
-    flexDirection: 'column',
+    flexDirection: "column",
   },
   flex_row: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   flex_wrap: {
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
   },
   flex_1: {
     flex: 1,
@@ -177,38 +177,38 @@ export const atoms = {
     flexShrink: 1,
   },
   justify_around: {
-    justifyContent: 'space-around',
+    justifyContent: "space-around",
   },
   justify_center: {
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   justify_between: {
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   justify_end: {
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   align_center: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   align_start: {
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
   },
   align_end: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
   },
   align_self_center: {
-    alignSelf: 'center',
+    alignSelf: "center",
   },
 
   /*
    * Text
    */
   text_center: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   text_right: {
-    textAlign: 'right',
+    textAlign: "right",
   },
   text_2xs: {
     fontSize: tokens.fontSize._2xs,
@@ -683,6 +683,9 @@ export const atoms = {
   mt_auto: {
     marginTop: tokens.space.auto,
   },
+  mt_safe: (top: number, minSpacing: number) => ({
+    marginTop: Math.max(top, minSpacing),
+  }),
   mb_2xs: {
     marginBottom: tokens.space._2xs,
   },

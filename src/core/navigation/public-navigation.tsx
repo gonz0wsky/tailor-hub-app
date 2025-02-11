@@ -3,8 +3,9 @@ import type { NativeStackNavigationOptions } from "@react-navigation/native-stac
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { OnboardingView } from "@features/auth/ui/OnboardingView";
+import { SignInView } from "@features/auth/ui/SignInView/SignInView";
 
-import type { PublicNavigatorParamList } from "./params";
+import type { PublicNavigatorParamList } from "./routes/params";
 
 const { Navigator, Screen } =
   createNativeStackNavigator<PublicNavigatorParamList>();
@@ -16,8 +17,9 @@ export const PublicNavigator = () => {
   } as const;
 
   return (
-    <Navigator initialRouteName="Onboarding" screenOptions={screenOptions}>
+    <Navigator initialRouteName="SignIn" screenOptions={screenOptions}>
       <Screen name="Onboarding" component={OnboardingView} />
+      <Screen name="SignIn" component={SignInView} />
     </Navigator>
   );
 };

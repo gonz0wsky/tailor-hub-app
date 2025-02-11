@@ -1,0 +1,13 @@
+import type { FC } from "react";
+
+import LeftArrow from "./icons/LeftArrow";
+
+import type { IconProps } from "./types";
+
+const createSvgIcons = <T extends { [name: string]: FC<IconProps> }>(
+  cfg: T
+): Record<keyof T, FC<IconProps>> => cfg;
+
+export const icons = createSvgIcons({
+  "left-arrow": LeftArrow,
+});
