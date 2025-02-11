@@ -112,6 +112,9 @@ export const atoms = {
   rounded_md: {
     borderRadius: tokens.borderRadius.md,
   },
+  rounded_lg: {
+    borderRadius: tokens.borderRadius.lg,
+  },
   rounded_full: {
     borderRadius: tokens.borderRadius.full,
   },
@@ -243,61 +246,23 @@ export const atoms = {
   leading_normal: {
     lineHeight: 1.5,
   },
-  font_title_one: {
+  font_xs_semibold: {
     fontWeight: tokens.fontWeight.semibold,
     fontFamily: tokens.font.bold,
-    fontSize: tokens.fontSize._3xl,
-  },
-  font_title_two: {
-    fontWeight: tokens.fontWeight.semibold,
-    fontFamily: tokens.font.bold,
-    fontSize: tokens.fontSize.xl,
-  },
-  font_body_one: {
-    fontWeight: tokens.fontWeight.normal,
-    fontFamily: tokens.font.regular,
     fontSize: tokens.fontSize.md,
-  },
-  font_body_one_medium: {
-    fontWeight: tokens.fontWeight.medium,
-    fontFamily: tokens.font.regular,
-    fontSize: tokens.fontSize.md,
-  },
-  font_body_two: {
-    fontWeight: tokens.fontWeight.normal,
-    fontFamily: tokens.font.regular,
-    fontSize: tokens.fontSize.sm,
-  },
-  font_body_two_medium: {
-    fontWeight: tokens.fontWeight.medium,
-    fontFamily: tokens.font.regular,
-    fontSize: tokens.fontSize.sm,
-  },
-  font_caption: {
-    fontWeight: tokens.fontWeight.normal,
-    fontFamily: tokens.font.regular,
-    fontSize: tokens.fontSize.xs,
-  },
-  font_caption_semibold: {
-    fontWeight: tokens.fontWeight.semibold,
-    fontFamily: tokens.font.regular,
-    fontSize: tokens.fontSize.xs,
-  },
-  font_uppercase: {
-    textTransform: 'uppercase',
   },
 
   /*
    * Border
    */
   border: {
-    borderWidth: 2,
+    borderWidth: 1,
   },
   border_t: {
-    borderTopWidth: 2,
+    borderTopWidth: 1,
   },
   border_b: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
   },
 
   /*

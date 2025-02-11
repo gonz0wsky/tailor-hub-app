@@ -21,6 +21,21 @@ export const theme = {
       secondary: { backgroundColor: palette.blue },
       tertiary: { backgroundColor: palette.grey },
     },
-    components: {},
+    components: {
+      button: {
+        background: {
+          primary: { backgroundColor: palette.white },
+          secondary: {},
+        },
+        border: {
+          primary: { borderColor: palette.white },
+          secondary: { borderColor: palette.black },
+        },
+        text: {
+          primary: { color: palette.black },
+          secondary: { color: palette.black },
+        },
+      },
+    },
   },
 };
