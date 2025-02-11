@@ -11,11 +11,12 @@ import {
 type Props = {
   error?: string;
   label?: string;
+  overrideTextInputProps?: RNTextInput["props"];
   placeholder?: string;
+  style?: ViewStyle;
+  testID?: string;
   type?: "text" | "textarea" | "password";
   variant?: "primary" | "secondary";
-  overrideTextInputProps?: RNTextInput["props"];
-  style?: ViewStyle;
 };
 
 const inputStyle: Record<NonNullable<Props["type"]>, TextStyle[]> = {
@@ -31,13 +32,14 @@ const inputProps: Record<NonNullable<Props["type"]>, RNTextInput["props"]> = {
 } as const;
 
 const TextInput: FC<Props> = ({
-  style,
   error,
   label,
+  overrideTextInputProps,
   placeholder,
+  style,
+  testID,
   type = "text",
   variant = "primary",
-  overrideTextInputProps,
 }) => {
   const t = useTheme();
 
@@ -55,6 +57,7 @@ const TextInput: FC<Props> = ({
         </Text>
       )}
       <RNTextInput
+        testID={`${testID}-input`}
         placeholder={placeholder}
         placeholderTextColor={
           t.atoms.components.textinput.placeholder[variant].color
