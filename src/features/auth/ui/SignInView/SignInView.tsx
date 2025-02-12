@@ -1,15 +1,6 @@
 import { atoms as a, useSafeArea, useTheme } from "@core/layout";
 import { ScreenComponent } from "@core/navigation/routes/params";
-import { useLingui } from "@lingui/react";
-import Button from "@shared/ui/components/Button";
-import {
-  Image,
-  KeyboardAvoidingView,
-  SafeAreaView,
-  Text,
-  View,
-} from "react-native";
-import { msg } from "@lingui/core/macro";
+import { KeyboardAvoidingView, View } from "react-native";
 import LoginForm from "./forms/LoginForm";
 import Logo from "@shared/ui/components/Logo";
 import RegisterStepOneForm from "./forms/RegisterStepOneForm";
@@ -17,10 +8,9 @@ import RegisterStepTwoForm from "./forms/RegisterStepTwoForm";
 import { useSignInViewModel } from "./useSignInViewModel";
 
 export const SignInView: ScreenComponent<"SignIn"> = () => {
-  const { i18n } = useLingui();
   const t = useTheme();
   const safe = useSafeArea();
-  const { formStep, handlePressBack, handlePressRegister } =
+  const { formStep, handlePressBack, handlePressRegister, handleLogin } =
     useSignInViewModel();
 
   return (
@@ -47,7 +37,7 @@ export const SignInView: ScreenComponent<"SignIn"> = () => {
       >
         {formStep === "login" && (
           <LoginForm
-            onSubmit={() => {}}
+            onSubmit={handleLogin}
             onPressRegister={handlePressRegister}
           />
         )}

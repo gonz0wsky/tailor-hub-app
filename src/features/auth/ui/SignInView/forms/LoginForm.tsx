@@ -1,41 +1,74 @@
 import { atoms as a, useTheme } from "@core/layout";
 import { useLingui } from "@lingui/react";
 import Button from "@shared/ui/components/Button";
-import TextInput from "@shared/ui/components/TextInput";
-import { FC, memo } from "react";
+import FormTextInput from "@shared/ui/components/FormTextInput";
+import { FC, memo, useCallback, useMemo } from "react";
+import { useForm } from "react-hook-form";
 import { Text, View } from "react-native";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { emailSchema, passwordSchema } from "@shared/validations";
 
 type Props = {
   onSubmit: (email: string, password: string) => void;
   onPressRegister: () => void;
 };
 
-const LoginForm: FC<Props> = ({ onPressRegister }) => {
+const LoginForm: FC<Props> = ({ onSubmit, onPressRegister }) => {
   const t = useTheme();
   const { i18n } = useLingui();
 
+  const { control, handleSubmit } = useForm<{
+    email: string;
+    password: string;
+  }>({
+    mode: "onSubmit",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: zodResolver(
+      z.object({ email: emailSchema, password: passwordSchema })
+    ),
+  });
+
+  const onPressSubmit = useCallback(() => {
+    handleSubmit(({ email, password }) => {
+      onSubmit(email, password);
+    })();
+  }, [handleSubmit, onSubmit]);
+
   return (
     <View style={[a.my_2xl, a.mx_lg, a.gap_2xl]}>
-      <TextInput
+      <FormTextInput
+        control={control}
+        name="email"
         label={i18n.t("Email")}
         placeholder={i18n.t("Escribe tu email")}
-        testID="form-email-input"
+        testID="form-email"
         type="email"
         variant="secondary"
       />
-      <TextInput
+      <FormTextInput
+        control={control}
+        name="password"
         label={i18n.t("Contraseña")}
         placeholder={i18n.t("Escribe tu contraseña")}
-        testID="form-password-input"
+        testID="form-password"
         variant="secondary"
         type="password"
       />
-      <Button title={i18n.t("Entrar")} />
+      <Button
+        testID="login-button"
+        title={i18n.t("Entrar")}
+        onPress={onPressSubmit}
+      />
       <View style={[a.flex_row]}>
         <Text style={[t.atoms.text.secondary]}>
           {i18n.t("¿No tienes cuenta?")}
         </Text>
         <Text
+          testID="submit-button"
           style={[
             a.ml_xs,
             t.atoms.text.secondary,

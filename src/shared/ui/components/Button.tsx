@@ -1,16 +1,18 @@
 import { atoms as a, useTheme } from "@core/layout/index";
 import { FC, memo } from "react";
 import { ActivityIndicator, Text, View, ViewStyle } from "react-native";
-import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import { RectButton } from "react-native-gesture-handler";
 
 type Props = {
   disabled?: boolean;
   loading?: boolean;
   onPress?: () => Promise<void> | void;
   size?: "normal" | "small";
+  style?: ViewStyle;
+  testID?: string;
   title: string;
   variant?: "primary" | "secondary";
-} & Omit<RectButtonProps, "onPress">;
+};
 
 const buttonSize: Record<NonNullable<Props["size"]>, ViewStyle[]> = {
   normal: [a.w_full],
@@ -25,11 +27,13 @@ const Button: FC<Props> = ({
   title,
   variant = "primary",
   onPress,
+  testID,
 }) => {
   const t = useTheme();
 
   return (
     <View
+      testID={testID}
       pointerEvents={loading || disabled ? "none" : undefined}
       style={[
         style,

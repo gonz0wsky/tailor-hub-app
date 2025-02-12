@@ -1,5 +1,5 @@
 import { atoms as a, android, useTheme } from "@core/layout";
-import { FC, memo } from "react";
+import { FC, LegacyRef, memo, RefAttributes } from "react";
 import {
   TextInput as RNTextInput,
   Text,
@@ -8,8 +8,9 @@ import {
   ViewStyle,
 } from "react-native";
 
-type Props = {
+export type Props = {
   error?: string;
+  inputRef?: LegacyRef<RNTextInput>;
   label?: string;
   overrideTextInputProps?: RNTextInput["props"];
   placeholder?: string;
@@ -35,6 +36,7 @@ const inputProps: Record<NonNullable<Props["type"]>, RNTextInput["props"]> = {
 
 const TextInput: FC<Props> = ({
   error,
+  inputRef,
   label,
   overrideTextInputProps,
   placeholder,
@@ -49,6 +51,7 @@ const TextInput: FC<Props> = ({
     <View style={[style]}>
       {!!label && (
         <Text
+          testID={`${testID}-label`}
           style={[
             a.mb_md,
             a.font_s_semibold,
@@ -59,6 +62,7 @@ const TextInput: FC<Props> = ({
         </Text>
       )}
       <RNTextInput
+        ref={inputRef}
         testID={`${testID}-input`}
         placeholder={placeholder}
         placeholderTextColor={
@@ -81,6 +85,7 @@ const TextInput: FC<Props> = ({
       />
       {!!error && (
         <Text
+          testID={`${testID}-error`}
           style={[
             a.mt_xs,
             a.font_xs_semibold,

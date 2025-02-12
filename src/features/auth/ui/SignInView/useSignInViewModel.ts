@@ -22,5 +22,9 @@ export const useSignInViewModel = () => {
     setFormStep("register-step-one");
   }, []);
 
-  return { formStep, handlePressRegister, handlePressBack };
+  const handleLogin = useCallback((email: string, password: string) => {
+    console.log("TODO: implement login", { email, password });
+  }, []);
+
+  return { formStep, handlePressRegister, handlePressBack, handleLogin };
 };
