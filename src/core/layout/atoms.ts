@@ -274,6 +274,9 @@ export const atoms = {
   border_t: {
     borderTopWidth: 1,
   },
+  border_t_sm: {
+    borderTopWidth: 1.5,
+  },
   border_b: {
     borderBottomWidth: 1,
   },

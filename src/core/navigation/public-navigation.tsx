@@ -10,12 +10,12 @@ import type { PublicNavigatorParamList } from "./routes/params";
 const { Navigator, Screen } =
   createNativeStackNavigator<PublicNavigatorParamList>();
 
-export const PublicNavigator = () => {
-  const screenOptions: NativeStackNavigationOptions = {
-    headerShown: false,
-    animation: "ios_from_right",
-  } as const;
+const screenOptions: NativeStackNavigationOptions = {
+  headerShown: false,
+  animation: "ios_from_right",
+} as const;
 
+export const PublicNavigator = () => {
   return (
     <Navigator initialRouteName="SignIn" screenOptions={screenOptions}>
       <Screen name="Onboarding" component={OnboardingView} />

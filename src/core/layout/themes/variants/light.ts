@@ -7,6 +7,7 @@ export const palette = {
   pastel_blue: tokens.color.theme_light_pastel_blue,
   white: tokens.color.theme_light_white,
 
+  black_35: `${tokens.color.theme_light_black}35`,
   black_60: `${tokens.color.theme_light_black}60`,
   white_60: `${tokens.color.theme_light_white}60`,
 } as const;
@@ -56,6 +57,15 @@ export const theme = {
           primary: { color: palette.black_60 },
           secondary: { color: palette.white_60 },
         },
+      },
+      icon: {
+        color: {
+          primary: { color: palette.black },
+          primary_disabled: { color: palette.black_35 },
+        },
+      },
+      bottombar: {
+        border: { borderColor: palette.grey },
       },
     },
   },

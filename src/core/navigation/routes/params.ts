@@ -9,16 +9,23 @@ export type PublicNavigatorParamList = {
 export type RestaurantNavigatorParamList = {
   RestaurantCreate: undefined;
   RestaurantDetail: { id: string };
-  RestaurantsList: undefined;
+  Restaurants: undefined;
 };
 
-export type UserNavigatorParamList = {
-  UserProfile: undefined;
+export type ProfileNavigatorParamList = {
+  Profile: undefined;
+};
+
+export type TabNavigatorParamList = {
+  FavoritesTab: undefined;
+  ProfileTab: undefined;
+  RestaurantsTab: undefined;
 };
 
 export type AllNavigatorParamList = PublicNavigatorParamList &
   RestaurantNavigatorParamList &
-  UserNavigatorParamList;
+  ProfileNavigatorParamList &
+  TabNavigatorParamList;
 
 export type ScreenName = keyof AllNavigatorParamList;
 
