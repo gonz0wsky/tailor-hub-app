@@ -12,6 +12,8 @@ export const palette = {
 
   blue_60: `${tokens.color.theme_light_blue}60`,
 
+  grey_60: `${tokens.color.theme_light_grey}60`,
+
   white_60: `${tokens.color.theme_light_white}60`,
 } as const;
 
@@ -71,6 +73,16 @@ export const theme = {
       },
       bottombar: {
         border: { borderColor: palette.grey },
+      },
+      icon_button: {
+        background: {
+          primary: {},
+          secondary: { backgroundColor: palette.grey_60 },
+        },
+        icon: {
+          primary: { color: palette.black },
+          secondary: { color: palette.white },
+        },
       },
     },
   },

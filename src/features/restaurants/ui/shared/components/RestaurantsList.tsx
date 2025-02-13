@@ -1,5 +1,5 @@
 import { atoms as a, useTheme } from "@core/layout";
-import { Restaurant } from "@features/restaurants/domain/Restaurant";
+import { Restaurant } from "@features/restaurants/domain/RestaurantModel";
 import { useLingui } from "@lingui/react";
 import Icon from "@shared/ui/components/Icon";
 import { fnWithId } from "@shared/utils/fnWithId";

@@ -3,6 +3,7 @@ import type { NativeStackNavigationOptions } from "@react-navigation/native-stac
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { RestaurantsView } from "@features/restaurants/ui/RestaurantsView/RestaurantsView";
+import { RestaurantDetailView } from "@features/restaurants/ui/RestaurantDetailView/RestaurantDetailView";
 
 import type { RestaurantNavigatorParamList } from "./routes/params";
 
@@ -18,6 +19,7 @@ export const RestaurantsNavigator = () => {
   return (
     <Navigator initialRouteName="Restaurants" screenOptions={screenOptions}>
       <Screen name="Restaurants" component={RestaurantsView} />
+      <Screen name="RestaurantDetail" component={RestaurantDetailView} />
     </Navigator>
   );
 };

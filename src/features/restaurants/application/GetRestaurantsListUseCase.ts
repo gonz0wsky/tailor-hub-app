@@ -1,4 +1,4 @@
-import { Restaurant } from "../domain/Restaurant";
+import { Restaurant } from "../domain/RestaurantModel";
 import { RestaurantRepository } from "../domain/RestaurantRepository";
 
 export class GetRestaurantsListUseCase {

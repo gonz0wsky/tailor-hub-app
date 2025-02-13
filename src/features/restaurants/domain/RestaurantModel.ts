@@ -1,4 +1,4 @@
-import { RestaurantScore } from "./RestaurantScore";
+import { RestaurantScore } from "./RestaurantScoreModel";
 
 export class Restaurant {
   constructor(

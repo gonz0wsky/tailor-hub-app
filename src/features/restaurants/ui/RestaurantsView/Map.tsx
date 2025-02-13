@@ -1,4 +1,4 @@
-import { Restaurant } from "@features/restaurants/domain/Restaurant";
+import { Restaurant } from "@features/restaurants/domain/RestaurantModel";
 import { FC, memo } from "react";
 import { View } from "react-native";
 import { MapView } from "@maplibre/maplibre-react-native";

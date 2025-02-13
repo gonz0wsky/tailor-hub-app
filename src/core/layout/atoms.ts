@@ -254,6 +254,11 @@ export const atoms = {
     fontFamily: tokens.font.regular,
     fontSize: tokens.fontSize.sm,
   },
+  font_xs_regular: {
+    fontWeight: tokens.fontWeight.normal,
+    fontFamily: tokens.font.regular,
+    fontSize: tokens.fontSize.md,
+  },
   font_xs_semibold: {
     fontWeight: tokens.fontWeight.semibold,
     fontFamily: tokens.font.bold,
