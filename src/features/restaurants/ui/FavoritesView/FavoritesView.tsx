@@ -21,6 +21,7 @@ export const FavoritesView: ScreenComponent<"FavoritesTab"> = () => {
       <SafeAreaView style={[a.flex_1, t.atoms.background.primary]}>
         <Header title={i18n.t("Favoritos")} />
         <RestaurantsList
+          style={[a.mt_lg]}
           emptyMessage={i18n.t("No hay restaurantes favoritos")}
           isLoading={isFavoritesLoading}
           onRestaurantPress={handlePressRestaurant}
