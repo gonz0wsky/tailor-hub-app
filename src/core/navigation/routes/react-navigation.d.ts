@@ -1,7 +1,7 @@
-import type { AllNavigatorParamList } from "./routes/params";
+import type { AllNavigatorParamList } from "./params";
 
 declare global {
   namespace ReactNavigation {
-    type RootParamList = AllNavigatorParamList;
+    interface RootParamList extends AllNavigatorParamList {}
   }
 }

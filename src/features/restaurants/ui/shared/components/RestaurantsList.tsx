@@ -77,28 +77,40 @@ const RestaurantCard: FC<CardProps> = ({
 };
 
 type RestaurantListProps = {
+  emptyMessage?: string;
   isLoading?: boolean;
-  onRestaurantClick: (id: string) => void;
+  onRestaurantPress: (id: string) => void;
+  onRestaurantFavoritePress: (id: string) => void;
   restaurants: Restaurant[];
 };
 
 const RestaurantList: FC<RestaurantListProps> = ({
-  onRestaurantClick,
+  onRestaurantPress,
+  onRestaurantFavoritePress,
   restaurants,
   isLoading,
+  emptyMessage,
 }) => {
   const renderItem: ListRenderItem<Restaurant> = useCallback(
     ({ item }) => {
       return (
         <RestaurantCard
           restaurant={item}
-          onCardPress={onRestaurantClick}
-          onFavoritePress={onRestaurantClick}
+          onCardPress={onRestaurantPress}
+          onFavoritePress={onRestaurantFavoritePress}
         />
       );
     },
-    [onRestaurantClick]
+    [onRestaurantFavoritePress, onRestaurantPress]
   );
+
+  if (emptyMessage && !isLoading && restaurants.length === 0) {
+    return (
+      <View style={[a.flex_1, a.align_center, a.justify_center]}>
+        <Text style={[a.font_s_regular]}>{emptyMessage}</Text>
+      </View>
+    );
+  }
 
   if (isLoading) {
     return <ActivityIndicator style={[a.absolute, a.inset_0]} />;

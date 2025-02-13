@@ -12,8 +12,14 @@ import { useCallback } from "react";
 export const RestaurantsView: ScreenComponent<"Restaurants"> = () => {
   const { i18n } = useLingui();
   const t = useTheme();
-  const { restaurants, isRestaurantsLoading, currentPage, setCurrentPage } =
-    useRestaurantsViewModel();
+  const {
+    currentPage,
+    handlePressFavoriteRestaurant,
+    handlePressRestaurant,
+    isRestaurantsLoading,
+    restaurants,
+    setCurrentPage,
+  } = useRestaurantsViewModel();
 
   const iconColor = useCallback(
     (selected: boolean) =>
@@ -44,9 +50,11 @@ export const RestaurantsView: ScreenComponent<"Restaurants"> = () => {
       </Header>
       {currentPage === "list" && (
         <RestaurantList
+          emptyMessage={i18n.t("No hay restaurantes")}
           isLoading={isRestaurantsLoading}
+          onRestaurantFavoritePress={handlePressFavoriteRestaurant}
+          onRestaurantPress={handlePressRestaurant}
           restaurants={restaurants}
-          onRestaurantClick={() => {}}
         />
       )}
     </SafeAreaView>
