@@ -9,6 +9,9 @@ export const palette = {
 
   black_35: `${tokens.color.theme_light_black}35`,
   black_60: `${tokens.color.theme_light_black}60`,
+
+  blue_60: `${tokens.color.theme_light_blue}60`,
+
   white_60: `${tokens.color.theme_light_white}60`,
 } as const;
 
@@ -62,6 +65,8 @@ export const theme = {
         color: {
           primary: { color: palette.black },
           primary_disabled: { color: palette.black_35 },
+          secondary: { color: palette.blue },
+          secondary_disabled: { color: palette.blue_60 },
         },
       },
       bottombar: {

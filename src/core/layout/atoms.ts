@@ -249,6 +249,11 @@ export const atoms = {
   leading_normal: {
     lineHeight: 1.5,
   },
+  font_xss_regular: {
+    fontWeight: tokens.fontWeight.normal,
+    fontFamily: tokens.font.regular,
+    fontSize: tokens.fontSize.sm,
+  },
   font_xs_semibold: {
     fontWeight: tokens.fontWeight.semibold,
     fontFamily: tokens.font.bold,
@@ -256,7 +261,7 @@ export const atoms = {
   },
   font_s_semibold: {
     fontWeight: tokens.fontWeight.semibold,
-    fontFamily: tokens.font.bold,
+    fontFamily: tokens.font.semibold,
     fontSize: tokens.fontSize._3xl,
   },
   font_s_regular: {
