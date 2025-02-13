@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Header: FC<Props> = ({ title, children }) => (
-  <View style={[a.flex_row, a.justify_between, a.my_sm, a.mx_lg]}>
+  <View style={[a.flex_row, a.justify_between, a.mt_sm, a.mx_lg]}>
     <Text numberOfLines={1} style={[a.font_s_semibold]}>
       {title}
     </Text>

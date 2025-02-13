@@ -154,12 +154,16 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
 				ED796D487DAFBF1FE2D779EB /* [CP] Embed Pods Frameworks */,
+				EF11C11567144C86B19A6798 /* Remove signature files (Xcode workaround) */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = tailorhubapp;
+			packageProductDependencies = (
+				6C34A3650F63563BDA063B94 /* MapLibre */,
+			);
 			productName = tailorhubapp;
 			productReference = 13B07F961A680F5B00A75B9A /* tailorhubapp.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +190,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				01C714B927B0B1B171E574AA /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -320,6 +327,20 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tailorhubapp/Pods-tailorhubapp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EF11C11567144C86B19A6798 /* Remove signature files (Xcode workaround) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Remove signature files (Xcode workaround)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n          echo \"Remove signature files (Xcode workaround)\";\n          rm -rf \"$CONFIGURATION_BUILD_DIR/MapLibre.xcframework-ios.signature\";\n        ";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -361,7 +382,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.tailorhubapp;
-				PRODUCT_NAME = "tailorhubapp";
+				PRODUCT_NAME = tailorhubapp;
 				SWIFT_OBJC_BRIDGING_HEADER = "tailorhubapp/tailorhubapp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -378,6 +399,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = tailorhubapp/tailorhubapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = tailorhubapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -389,7 +411,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.tailorhubapp;
-				PRODUCT_NAME = "tailorhubapp";
+				PRODUCT_NAME = tailorhubapp;
 				SWIFT_OBJC_BRIDGING_HEADER = "tailorhubapp/tailorhubapp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -537,6 +559,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		01C714B927B0B1B171E574AA /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maplibre/maplibre-gl-native-distribution";
+			requirement = {
+				kind = exactVersion;
+				version = 6.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6C34A3650F63563BDA063B94 /* MapLibre */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01C714B927B0B1B171E574AA /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = MapLibre;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

@@ -8,6 +8,7 @@ import { useRestaurantsViewModel } from "./useRestaurantsViewModel";
 import IconButton from "../shared/components/IconButton";
 import { fnWithId } from "@shared/utils/fnWithId";
 import { useCallback } from "react";
+import Map from "./Map";
 
 export const RestaurantsView: ScreenComponent<"Restaurants"> = () => {
   const { i18n } = useLingui();
@@ -50,6 +51,7 @@ export const RestaurantsView: ScreenComponent<"Restaurants"> = () => {
       </Header>
       {currentPage === "list" && (
         <RestaurantList
+          style={[a.mt_lg]}
           emptyMessage={i18n.t("No hay restaurantes")}
           isLoading={isRestaurantsLoading}
           onRestaurantFavoritePress={handlePressFavoriteRestaurant}
@@ -57,6 +59,7 @@ export const RestaurantsView: ScreenComponent<"Restaurants"> = () => {
           restaurants={restaurants}
         />
       )}
+      {currentPage === "map" && <Map restaurants={restaurants} />}
     </SafeAreaView>
   );
 };

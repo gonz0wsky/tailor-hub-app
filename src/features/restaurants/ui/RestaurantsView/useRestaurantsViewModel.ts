@@ -7,7 +7,7 @@ export const useRestaurantsViewModel = () => {
 
   const { data, isLoading } = useRestaurantsQuery();
 
-  const [currentPage, setCurrentPage] = useState<"map" | "list">("list");
+  const [currentPage, setCurrentPage] = useState<"map" | "list">("map");
 
   const handlePressRestaurant = useCallback(
     (id: string) => {

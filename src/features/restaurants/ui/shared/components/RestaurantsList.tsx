@@ -8,23 +8,45 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
+  ImageStyle,
   ListRenderItem,
   Text,
   View,
+  ViewStyle,
 } from "react-native";
-import { BorderlessButton, RectButton } from "react-native-gesture-handler";
+import { RectButton } from "react-native-gesture-handler";
 import IconButton from "./IconButton";
+
+const HORIZONTAL_CARD_WIDTH = 300;
+const HORIZONTAL_CARD_SPACING = a.px_xs.paddingLeft + a.px_xs.paddingRight;
 
 type CardProps = {
   onCardPress: (id: string) => void;
   onFavoritePress: (id: string) => void;
   restaurant: Restaurant;
+  variant: "default" | "small";
 };
 
+const restaurantCardButtonStyle: Record<CardProps["variant"], ViewStyle[]> = {
+  default: [a.px_lg],
+  small: [a.px_sm, a.mx_xs, { borderRadius: 20, width: HORIZONTAL_CARD_WIDTH }],
+} as const;
+
+const restaurantCardContentStyle: Record<CardProps["variant"], ViewStyle[]> = {
+  default: [a.my_sm],
+  small: [],
+} as const;
+
+const restaurantCardImageStyle: Record<CardProps["variant"], ImageStyle[]> = {
+  default: [{ height: 80, width: 80 }, a.rounded_lg],
+  small: [{ height: 68, width: 68 }, a.rounded_lg],
+} as const;
+
 const RestaurantCard: FC<CardProps> = ({
-  restaurant,
   onCardPress,
   onFavoritePress,
+  restaurant,
+  variant = "default",
 }) => {
   const { i18n } = useLingui();
   const t = useTheme();
@@ -33,26 +55,37 @@ const RestaurantCard: FC<CardProps> = ({
     <RectButton
       testID={`restaurant-card-button-${restaurant.id}`}
       onPress={fnWithId(onCardPress, restaurant.id)}
-      style={[a.flex_row, a.px_lg, a.py_sm]}
+      style={[
+        restaurantCardButtonStyle[variant],
+        a.flex_row,
+        a.py_sm,
+        t.atoms.background.primary,
+      ]}
     >
       <Image
-        style={[{ height: 80, width: 80 }, a.rounded_lg, a.mr_sm]}
+        style={[restaurantCardImageStyle[variant], a.mr_sm]}
         source={{ uri: restaurant.image }}
       />
-      <View style={[a.flex_1, a.py_sm]}>
+      <View
+        style={[
+          a.flex_1,
+          a.justify_between,
+          restaurantCardContentStyle[variant],
+        ]}
+      >
         <Text numberOfLines={1} style={[a.font_xs_semibold]}>
           {restaurant.name}
         </Text>
-        <Text numberOfLines={1} style={[a.font_xss_regular, a.mt_xs]}>
+        <Text numberOfLines={1} style={[a.font_xss_regular]}>
           {restaurant.address}
         </Text>
         <IconButton
           testID={`restaurant-card-like-button-${restaurant.id}`}
-          style={[a.absolute, { top: 8, right: 0 }]}
+          style={[a.absolute, { right: 0 }]}
           onPress={fnWithId(onFavoritePress, restaurant.id)}
           name={restaurant.isFavorite ? "hearth-filled" : "hearth"}
         />
-        <View style={[a.mt_auto, a.flex_row, a.align_center]}>
+        <View style={[a.flex_row, a.align_center]}>
           <View style={[a.flex_row, a.gap_sm, a.mr_lg]}>
             {Array.from({ length: restaurant.score.maxScore }).map((_, i) => (
               <Icon
@@ -67,9 +100,11 @@ const RestaurantCard: FC<CardProps> = ({
               />
             ))}
           </View>
-          <Text numberOfLines={1} style={[a.font_xss_regular]}>
-            {`(${restaurant.score.value} ${i18n.t("Comentarios")})`}
-          </Text>
+          {variant === "default" && (
+            <Text numberOfLines={1} style={[a.font_xss_regular]}>
+              {`(${restaurant.score.value} ${i18n.t("Comentarios")})`}
+            </Text>
+          )}
         </View>
       </View>
     </RectButton>
@@ -78,10 +113,12 @@ const RestaurantCard: FC<CardProps> = ({
 
 type RestaurantListProps = {
   emptyMessage?: string;
+  horizontal?: boolean;
   isLoading?: boolean;
-  onRestaurantPress: (id: string) => void;
   onRestaurantFavoritePress: (id: string) => void;
+  onRestaurantPress: (id: string) => void;
   restaurants: Restaurant[];
+  style?: ViewStyle[];
 };
 
 const RestaurantList: FC<RestaurantListProps> = ({
@@ -90,18 +127,21 @@ const RestaurantList: FC<RestaurantListProps> = ({
   restaurants,
   isLoading,
   emptyMessage,
+  horizontal = false,
+  style,
 }) => {
   const renderItem: ListRenderItem<Restaurant> = useCallback(
     ({ item }) => {
       return (
         <RestaurantCard
-          restaurant={item}
           onCardPress={onRestaurantPress}
           onFavoritePress={onRestaurantFavoritePress}
+          restaurant={item}
+          variant={horizontal ? "small" : "default"}
         />
       );
     },
-    [onRestaurantFavoritePress, onRestaurantPress]
+    [horizontal, onRestaurantFavoritePress, onRestaurantPress]
   );
 
   if (emptyMessage && !isLoading && restaurants.length === 0) {
@@ -116,7 +156,20 @@ const RestaurantList: FC<RestaurantListProps> = ({
     return <ActivityIndicator style={[a.absolute, a.inset_0]} />;
   }
 
-  return <FlatList renderItem={renderItem} data={restaurants} />;
+  return (
+    <FlatList
+      contentContainerStyle={[horizontal && a.px_xs]}
+      data={restaurants}
+      decelerationRate="fast"
+      horizontal={horizontal}
+      renderItem={renderItem}
+      showsHorizontalScrollIndicator={false}
+      snapToAlignment="start"
+      snapToInterval={HORIZONTAL_CARD_WIDTH + HORIZONTAL_CARD_SPACING}
+      style={[style]}
+      testID="restaurants-list"
+    />
+  );
 };
 
 export default memo(RestaurantList);
