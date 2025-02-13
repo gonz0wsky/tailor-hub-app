@@ -22,6 +22,7 @@ export const theme = {
   atoms: {
     text: {
       primary: { color: palette.black },
+      primary_60: { color: palette.black_60 },
       secondary: { color: palette.white },
       tertiary: { color: palette.blue },
     },

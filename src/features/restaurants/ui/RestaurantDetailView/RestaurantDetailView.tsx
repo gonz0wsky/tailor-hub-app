@@ -1,14 +1,15 @@
 import { ScreenComponent } from "@core/navigation/routes/params";
 import { ActivityIndicator, SafeAreaView, Text, View } from "react-native";
-import { Image } from "expo-image";
 import { useRestaurantDetailViewModel } from "./useRestaurantDetailViewModel";
-import { atoms as a } from "@core/layout";
-import IconButton from "../shared/components/IconButton";
-import DetailHeader from "./DetailHeader";
+import { atoms as a, atoms, useTheme } from "@core/layout";
+import DetailHeader from "./components/DetailHeader";
+import ReviewList from "./components/ReviewList";
+import CommentCard from "./components/CommentCard";
 
 export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
   route,
 }) => {
+  const t = useTheme();
   const { data, isLoading } = useRestaurantDetailViewModel("1");
 
   if (isLoading || !data) {
@@ -16,7 +17,7 @@ export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
   }
 
   return (
-    <SafeAreaView style={[]}>
+    <SafeAreaView style={[a.flex_1, t.atoms.background.primary]}>
       <DetailHeader
         image={data.restaurant.image}
         onPressBack={() => {}}
@@ -24,6 +25,16 @@ export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
         subtitle={data.restaurant.address}
         title={data.restaurant.name}
       />
+      <ReviewList
+        reviews={data.reviews}
+        onPressEdit={() => {}}
+        onPressDelete={() => {}}
+      >
+        <View style={[a.px_lg]}>
+          <Text style={[atoms.font_xs_regular]}>{data.description}</Text>
+          <CommentCard style={[atoms.mt_2xl]} onSubmit={() => {}} />
+        </View>
+      </ReviewList>
     </SafeAreaView>
   );
 };
