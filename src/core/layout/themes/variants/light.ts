@@ -79,6 +79,8 @@ export const theme = {
           primary_disabled: { color: palette.black_35 },
           secondary: { color: palette.blue },
           secondary_disabled: { color: palette.blue_60 },
+          tertiary: { color: palette.white },
+          tertiary_disabled: { color: palette.white_60 },
         },
       },
       bottombar: {

@@ -9,8 +9,11 @@ import IconButton from "../../../../shared/ui/components/IconButton";
 import { fnWithId } from "@shared/utils/fnWithId";
 import { useCallback } from "react";
 import Map from "./Map";
+import NavigateToCreateFloatingButton from "@shared/ui/layout/NavigateToCreateFloatingButton";
 
-export const RestaurantsView: ScreenComponent<"Restaurants"> = () => {
+export const RestaurantsView: ScreenComponent<"Restaurants"> = ({
+  navigation,
+}) => {
   const { i18n } = useLingui();
   const t = useTheme();
   const {
@@ -35,31 +38,33 @@ export const RestaurantsView: ScreenComponent<"Restaurants"> = () => {
 
   return (
     <SafeAreaView style={[a.flex_1, t.atoms.background.primary]}>
-      <Header title={i18n.t("Restaurantes")}>
-        <IconButton
-          name="map"
-          size={24}
-          color={iconColor(currentPage === "map")}
-          onPress={fnWithId(setCurrentPage, "map")}
-        />
-        <IconButton
-          name="list"
-          size={24}
-          color={iconColor(currentPage === "list")}
-          onPress={fnWithId(setCurrentPage, "list")}
-        />
-      </Header>
-      {currentPage === "list" && (
-        <RestaurantList
-          style={[a.mt_lg]}
-          emptyMessage={i18n.t("No hay restaurantes")}
-          isLoading={isRestaurantsLoading}
-          onRestaurantFavoritePress={handlePressFavoriteRestaurant}
-          onRestaurantPress={handlePressRestaurant}
-          restaurants={restaurants}
-        />
-      )}
-      {currentPage === "map" && <Map restaurants={restaurants} />}
+      <NavigateToCreateFloatingButton>
+        <Header title={i18n.t("Restaurantes")}>
+          <IconButton
+            name="map"
+            size={24}
+            color={iconColor(currentPage === "map")}
+            onPress={fnWithId(setCurrentPage, "map")}
+          />
+          <IconButton
+            name="list"
+            size={24}
+            color={iconColor(currentPage === "list")}
+            onPress={fnWithId(setCurrentPage, "list")}
+          />
+        </Header>
+        {currentPage === "list" && (
+          <RestaurantList
+            style={[a.mt_lg]}
+            emptyMessage={i18n.t("No hay restaurantes")}
+            isLoading={isRestaurantsLoading}
+            onRestaurantFavoritePress={handlePressFavoriteRestaurant}
+            onRestaurantPress={handlePressRestaurant}
+            restaurants={restaurants}
+          />
+        )}
+        {currentPage === "map" && <Map restaurants={restaurants} />}
+      </NavigateToCreateFloatingButton>
     </SafeAreaView>
   );
 };

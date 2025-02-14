@@ -21,7 +21,11 @@ export const RestaurantsNavigator = () => {
     <Navigator initialRouteName="Restaurants" screenOptions={screenOptions}>
       <Screen name="Restaurants" component={RestaurantsView} />
       <Screen name="RestaurantDetail" component={RestaurantDetailView} />
-      <Screen name="RestaurantCreate" component={RestaurantCreateView} />
+      <Screen
+        name="RestaurantCreate"
+        component={RestaurantCreateView}
+        options={{ presentation: "modal" }}
+      />
     </Navigator>
   );
 };
