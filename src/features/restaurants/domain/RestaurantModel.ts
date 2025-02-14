@@ -1,5 +1,3 @@
-import { RestaurantScore } from "./RestaurantScoreModel";
-
 export class Restaurant {
   constructor(
     id: string,
@@ -14,7 +12,7 @@ export class Restaurant {
     this.image = image;
     this.name = name;
     this.address = address;
-    this.score = new RestaurantScore(score);
+    this.score = score;
     this.reviewsCount = reviewsCount;
     this.isFavorite = isFavorite;
   }
@@ -23,7 +21,7 @@ export class Restaurant {
   readonly image: string;
   readonly name: string;
   readonly address: string;
-  readonly score: RestaurantScore;
+  readonly score: number;
   readonly reviewsCount: number;
   readonly isFavorite: boolean;
 }

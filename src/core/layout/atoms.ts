@@ -765,6 +765,9 @@ export const atoms = {
   ml_5xl: {
     marginLeft: tokens.space._5xl,
   },
+  ml_auto: {
+    marginLeft: "auto",
+  },
   mr_2xs: {
     marginRight: tokens.space._2xs,
   },

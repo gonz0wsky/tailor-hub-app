@@ -1,5 +1,5 @@
 import { atoms as a, android, useTheme } from "@core/layout";
-import { FC, LegacyRef, memo, RefAttributes } from "react";
+import { FC, LegacyRef, memo } from "react";
 import {
   TextInput as RNTextInput,
   Text,

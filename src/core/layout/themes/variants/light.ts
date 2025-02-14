@@ -31,6 +31,11 @@ export const theme = {
       secondary: { backgroundColor: palette.blue },
       tertiary: { backgroundColor: palette.grey },
     },
+    border: {
+      primary: { borderColor: palette.white },
+      secondary: { borderColor: palette.blue },
+      tertiary: { borderColor: palette.grey },
+    },
     components: {
       button: {
         background: {

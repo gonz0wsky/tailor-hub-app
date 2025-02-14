@@ -2,7 +2,7 @@ import { atoms as a, useTheme } from "@core/layout";
 import { useLingui } from "@lingui/react";
 import Button from "@shared/ui/components/Button";
 import FormTextInput from "@shared/ui/components/FormTextInput";
-import { FC, memo, useCallback, useMemo } from "react";
+import { FC, memo, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Text, View } from "react-native";
 import { zodResolver } from "@hookform/resolvers/zod";

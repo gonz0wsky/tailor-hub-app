@@ -10,7 +10,7 @@ export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
   route,
 }) => {
   const t = useTheme();
-  const { data, isLoading } = useRestaurantDetailViewModel("1");
+  const { data, isLoading } = useRestaurantDetailViewModel(route.params.id);
 
   if (isLoading || !data) {
     return <ActivityIndicator style={[a.absolute, a.inset_0]} />;
@@ -30,7 +30,7 @@ export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
         onPressEdit={() => {}}
         onPressDelete={() => {}}
       >
-        <View style={[a.px_lg]}>
+        <View style={[a.mb_sm]}>
           <Text style={[atoms.font_xs_regular]}>{data.description}</Text>
           <CommentCard style={[atoms.mt_2xl]} onSubmit={() => {}} />
         </View>

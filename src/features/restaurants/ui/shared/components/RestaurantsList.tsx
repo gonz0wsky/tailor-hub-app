@@ -1,7 +1,6 @@
 import { atoms as a, useTheme } from "@core/layout";
 import { Restaurant } from "@features/restaurants/domain/RestaurantModel";
 import { useLingui } from "@lingui/react";
-import Icon from "@shared/ui/components/Icon";
 import { fnWithId } from "@shared/utils/fnWithId";
 import { FC, memo, useCallback } from "react";
 import {
@@ -16,6 +15,7 @@ import {
 } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import IconButton from "./IconButton";
+import Score from "./Score";
 
 const HORIZONTAL_CARD_WIDTH = 300;
 const HORIZONTAL_CARD_SPACING = a.px_xs.paddingLeft + a.px_xs.paddingRight;
@@ -87,22 +87,11 @@ const RestaurantCard: FC<CardProps> = ({
         />
         <View style={[a.flex_row, a.align_center]}>
           <View style={[a.flex_row, a.gap_sm, a.mr_lg]}>
-            {Array.from({ length: restaurant.score.maxScore }).map((_, i) => (
-              <Icon
-                key={i}
-                name="star-eight-point"
-                size={16}
-                color={
-                  restaurant.score.value >= i + 1
-                    ? t.atoms.components.icon.color.secondary.color
-                    : t.atoms.components.icon.color.secondary_disabled.color
-                }
-              />
-            ))}
+            <Score score={restaurant.score} iconSize={16} />
           </View>
           {variant === "default" && (
             <Text numberOfLines={1} style={[a.font_xss_regular]}>
-              {`(${restaurant.score.value} ${i18n.t("Comentarios")})`}
+              {`(${restaurant.score} ${i18n.t("Comentarios")})`}
             </Text>
           )}
         </View>

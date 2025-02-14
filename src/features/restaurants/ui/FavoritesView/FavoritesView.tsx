@@ -1,7 +1,7 @@
 import { atoms as a, useTheme } from "@core/layout";
 import { ScreenComponent } from "@core/navigation/routes/params";
 import { useLingui } from "@lingui/react";
-import { SafeAreaView, Text } from "react-native";
+import { SafeAreaView } from "react-native";
 import Header from "../shared/components/Header";
 import RestaurantsList from "../shared/components/RestaurantsList";
 import { useFavoritesViewModel } from "./useFavoritesViewModel";

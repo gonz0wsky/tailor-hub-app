@@ -3,18 +3,18 @@ import { useLingui } from "@lingui/react";
 import Button from "@shared/ui/components/Button";
 import { FC, memo, useCallback } from "react";
 import { TextInput, View, ViewStyle } from "react-native";
-import Score from "./Score";
+import Score from "../../shared/components/Score";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { CONFIG } from "@core/config/config";
 
 type Props = {
   onSubmit: (content: string, score: number) => void;
   style?: ViewStyle[];
-  maxScore?: number;
 };
 
-const CommentCard: FC<Props> = ({ onSubmit, style, maxScore = 5 }) => {
+const CommentCard: FC<Props> = ({ onSubmit, style }) => {
   const { i18n } = useLingui();
   const t = useTheme();
 
@@ -30,7 +30,7 @@ const CommentCard: FC<Props> = ({ onSubmit, style, maxScore = 5 }) => {
     resolver: zodResolver(
       z.object({
         content: z.string().min(3),
-        score: z.number().min(1).max(maxScore),
+        score: z.number().min(1).max(CONFIG.MAX_REVIEW_SCORE),
       })
     ),
   });
@@ -52,12 +52,7 @@ const CommentCard: FC<Props> = ({ onSubmit, style, maxScore = 5 }) => {
 
   return (
     <View style={[style, a.border, a.rounded_xl, a.p_lg, a.gap_lg]}>
-      <Score
-        editable
-        maxScore={5}
-        onChange={handleOnChangeScore}
-        score={score ?? 0}
-      />
+      <Score editable onChange={handleOnChangeScore} score={score ?? 0} />
       <Controller
         name="content"
         control={control}

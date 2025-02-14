@@ -2,7 +2,7 @@ import { RestaurantDetail } from "../domain/RestaurantDetailModel";
 import { Restaurant } from "../domain/RestaurantModel";
 import { RestaurantRepository } from "../domain/RestaurantRepository";
 import { Review } from "../domain/ReviewModel";
-import { ReviewScore } from "../domain/ReviewScoreModel";
+import { User } from "../domain/User";
 
 export class RestaurantsRestImpl implements RestaurantRepository {
   async getRestaurant(id: string): Promise<RestaurantDetail> {
@@ -21,8 +21,9 @@ export class RestaurantsRestImpl implements RestaurantRepository {
         new Review(
           `${i}`,
           "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-          new ReviewScore(i),
-          false
+          i,
+          false,
+          new User(`${i}`, `User ${i}`)
         )
     );
 
