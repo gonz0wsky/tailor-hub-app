@@ -8,6 +8,7 @@ type Props = {
   testID?: string;
   onPress: () => void;
   variant?: "primary" | "secondary";
+  enabled?: boolean;
 } & IconProps;
 
 const IconButton: FC<Props> = ({
@@ -15,6 +16,7 @@ const IconButton: FC<Props> = ({
   style,
   testID,
   variant = "primary",
+  enabled = true,
   ...rest
 }) => {
   const t = useTheme();
@@ -25,6 +27,7 @@ const IconButton: FC<Props> = ({
       foreground
       rippleRadius={rest.size! - 10}
       onPress={onPress}
+      enabled={enabled}
       style={[
         style,
         a.rounded_full,
@@ -32,8 +35,8 @@ const IconButton: FC<Props> = ({
       ]}
     >
       <Icon
-        {...rest}
         color={t.atoms.components.icon_button.icon[variant].color}
+        {...rest}
       />
     </BorderlessButton>
   );

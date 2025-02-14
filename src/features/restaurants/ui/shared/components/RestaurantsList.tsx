@@ -14,7 +14,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
-import IconButton from "./IconButton";
+import IconButton from "../../../../../shared/ui/components/IconButton";
 import Score from "./Score";
 
 const HORIZONTAL_CARD_WIDTH = 300;

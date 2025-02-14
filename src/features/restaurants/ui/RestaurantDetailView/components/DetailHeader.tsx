@@ -2,7 +2,7 @@ import { atoms as a, useTheme } from "@core/layout";
 import { Image } from "expo-image";
 import { FC, memo } from "react";
 import { Text, View } from "react-native";
-import IconButton from "../../shared/components/IconButton";
+import IconButton from "../../../../../shared/ui/components/IconButton";
 
 type Props = {
   onPressBack: () => void;

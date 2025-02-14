@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native";
 import Header from "../shared/components/Header";
 import RestaurantList from "../shared/components/RestaurantsList";
 import { useRestaurantsViewModel } from "./useRestaurantsViewModel";
-import IconButton from "../shared/components/IconButton";
+import IconButton from "../../../../shared/ui/components/IconButton";
 import { fnWithId } from "@shared/utils/fnWithId";
 import { useCallback } from "react";
 import Map from "./Map";

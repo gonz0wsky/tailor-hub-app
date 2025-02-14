@@ -10,6 +10,7 @@ import Poi from "./icons/Poi";
 import StarEightPoint from "./icons/StarEightPoint";
 import User from "./icons/User";
 import Plus from "./icons/Plus";
+import Pen from "./icons/Pen";
 
 import type { IconProps } from "./types";
 
@@ -28,4 +29,5 @@ export const icons = createSvgIcons({
   poi: Poi,
   user: User,
   plus: Plus,
+  pen: Pen,
 });

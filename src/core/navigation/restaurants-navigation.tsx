@@ -18,10 +18,7 @@ const screenOptions: NativeStackNavigationOptions = {
 
 export const RestaurantsNavigator = () => {
   return (
-    <Navigator
-      initialRouteName="RestaurantCreate"
-      screenOptions={screenOptions}
-    >
+    <Navigator initialRouteName="Restaurants" screenOptions={screenOptions}>
       <Screen name="Restaurants" component={RestaurantsView} />
       <Screen name="RestaurantDetail" component={RestaurantDetailView} />
       <Screen name="RestaurantCreate" component={RestaurantCreateView} />
