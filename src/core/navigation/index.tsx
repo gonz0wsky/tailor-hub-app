@@ -16,12 +16,12 @@ const linking: LinkingOptions<AllNavigatorParamList> = {
 };
 
 export const Navigator = () => {
-  const isLogged = true;
+  const isLogged = false;
 
   return (
     <NavigationContainer linking={linking}>
       {!isLogged && <PublicNavigator />}
-      <TabsNavigator />
+      {isLogged && <TabsNavigator />}
     </NavigationContainer>
   );
 };

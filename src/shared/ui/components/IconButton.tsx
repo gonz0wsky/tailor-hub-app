@@ -25,11 +25,12 @@ const IconButton: FC<Props> = ({
     <BorderlessButton
       testID={testID}
       foreground
-      rippleRadius={rest.size! - 10}
+      rippleRadius={rest.size ? rest.size! - 10 : undefined}
       onPress={onPress}
       enabled={enabled}
       style={[
         style,
+        a.justify_center,
         a.rounded_full,
         t.atoms.components.icon_button.background[variant],
       ]}
