@@ -4,10 +4,12 @@ import Hearth from "./icons/Hearth";
 import HearthFilled from "./icons/HearthFilled";
 import LeftArrow from "./icons/LeftArrow";
 import List from "./icons/List";
+import Logo from "./icons/Logo";
 import Map from "./icons/Map";
 import Poi from "./icons/Poi";
 import StarEightPoint from "./icons/StarEightPoint";
 import User from "./icons/User";
+import Plus from "./icons/Plus";
 
 import type { IconProps } from "./types";
 
@@ -21,7 +23,9 @@ export const icons = createSvgIcons({
   "star-eight-point": StarEightPoint,
   hearth: Hearth,
   list: List,
+  logo: Logo,
   map: Map,
   poi: Poi,
   user: User,
+  plus: Plus,
 });

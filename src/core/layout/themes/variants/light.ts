@@ -41,18 +41,22 @@ export const theme = {
         background: {
           primary: { backgroundColor: palette.white },
           secondary: {},
+          tertiary: {},
         },
         border: {
           primary: { borderColor: palette.white },
           secondary: { borderColor: palette.black },
+          tertiary: { borderColor: palette.white },
         },
         text: {
           primary: { color: palette.black },
           secondary: { color: palette.black },
+          tertiary: { color: palette.white },
         },
         icon: {
           primary: { color: palette.white },
           secondary: { color: palette.black },
+          tertiary: { color: palette.white },
         },
       },
       textinput: {
@@ -65,7 +69,7 @@ export const theme = {
           secondary: { color: palette.white },
         },
         placeholder: {
-          primary: { color: palette.black_60 },
+          primary: { color: palette.black },
           secondary: { color: palette.white_60 },
         },
       },

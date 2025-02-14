@@ -8,10 +8,10 @@ type Props = {
   loading?: boolean;
   onPress?: () => Promise<void> | void;
   size?: "normal" | "small";
-  style?: ViewStyle;
+  style?: ViewStyle[];
   testID?: string;
   title: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary";
 };
 
 const buttonSize: Record<NonNullable<Props["size"]>, ViewStyle[]> = {
