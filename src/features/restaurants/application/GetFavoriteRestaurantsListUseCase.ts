@@ -5,6 +5,6 @@ export class GetFavoriteRestaurantsListUseCase {
   constructor(private restaurantRepository: RestaurantRepository) {}
 
   async execute(): Promise<Restaurant[]> {
-    return this.restaurantRepository.getRestaurants();
+    return this.restaurantRepository.getFavoriteRestaurants();
   }
 }

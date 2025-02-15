@@ -1,7 +1,6 @@
+import { GetRestaurantUseCase } from "@features/restaurants/application/GetRestaurantUseCase";
 import { useQuery } from "@tanstack/react-query";
-import { RestaurantsRestImpl } from "./RestaurantsRestImpl";
-import { GetRestaurantUseCase } from "../application/GetRestaurantUseCase";
-
+import { RestaurantsRestImpl } from "../RestaurantsRestImpl";
 export function useRestaurantQuery(id?: string) {
   return useQuery({
     enabled: !!id,

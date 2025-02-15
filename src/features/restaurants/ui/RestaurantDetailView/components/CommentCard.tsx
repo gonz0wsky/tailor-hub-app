@@ -69,7 +69,7 @@ const CommentCard: FC<Props> = ({ onSubmit, style }) => {
       />
       <Button
         disabled={!formState.isValid}
-        style={a.align_start}
+        style={[a.align_start]}
         variant="secondary"
         title={i18n.t("Enviar")}
       />

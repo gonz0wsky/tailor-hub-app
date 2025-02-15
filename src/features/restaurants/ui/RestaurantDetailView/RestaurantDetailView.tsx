@@ -10,7 +10,8 @@ export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
   route,
 }) => {
   const t = useTheme();
-  const { data, isLoading } = useRestaurantDetailViewModel(route.params.id);
+  const { data, isLoading, handlePressBack, isRefetching, refetch } =
+    useRestaurantDetailViewModel(route.params.id);
 
   if (isLoading || !data) {
     return <ActivityIndicator style={[a.absolute, a.inset_0]} />;
@@ -20,7 +21,7 @@ export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
     <SafeAreaView style={[a.flex_1, t.atoms.background.primary]}>
       <DetailHeader
         image={data.restaurant.image}
-        onPressBack={() => {}}
+        onPressBack={handlePressBack}
         onPressFavorite={() => {}}
         subtitle={data.restaurant.address}
         title={data.restaurant.name}
@@ -29,6 +30,8 @@ export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
         reviews={data.reviews}
         onPressEdit={() => {}}
         onPressDelete={() => {}}
+        onRefresh={refetch}
+        refreshing={isRefetching}
       >
         <View style={[a.mb_sm]}>
           <Text style={[atoms.font_xs_regular]}>{data.description}</Text>

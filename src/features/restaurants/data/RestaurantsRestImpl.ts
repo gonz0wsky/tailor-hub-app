@@ -1,51 +1,88 @@
+import { client } from "@core/api/client";
 import { RestaurantDetail } from "../domain/RestaurantDetailModel";
 import { Restaurant } from "../domain/RestaurantModel";
 import { RestaurantRepository } from "../domain/RestaurantRepository";
 import { Review } from "../domain/ReviewModel";
 import { User } from "../domain/User";
+import { RestaurantsListDTO } from "./restaurants-list/RestaurantsListDTO";
+import { RestaurantDetailDTO } from "./restaurant-detail/RestaurantDetailDTO";
+import { useStore } from "@core/store";
 
 export class RestaurantsRestImpl implements RestaurantRepository {
   async getRestaurant(id: string): Promise<RestaurantDetail> {
-    const restaurant = new Restaurant(
-      `${1}`,
-      "https://res.cloudinary.com/the-infatuation/image/upload/q_auto,f_auto/cms/guides/the-winter-onetwo-punch/Izakaya_sandynoto",
-      `Restaurant ${1}`,
-      "123 Main Street",
-      4,
-      4,
-      false
+    const response = await client.get<RestaurantDetailDTO>(
+      `/restaurant/detail/${id}`
     );
 
-    const reviews = Array.from({ length: 10 }).map(
-      (_, i) =>
+    const restaurant = new Restaurant(
+      response.data._id,
+      response.data.image,
+      response.data.name,
+      response.data.address,
+      response.data.avgRating,
+      response.data.reviews.length,
+      false,
+      response.data.latlng.lat,
+      response.data.latlng.lng
+    );
+
+    const reviews = response.data.reviews.map(
+      (review) =>
         new Review(
-          `${i}`,
-          "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-          i,
-          false,
-          new User(`${i}`, `User ${i}`)
+          review._id,
+          review.comment,
+          review.rating,
+          false, // TODO: How to know if the user owns the review?
+          new User(review.owner.name, review.owner.name) // TODO: Where to get the id?
         )
     );
 
-    return new RestaurantDetail(
-      restaurant,
-      "Lorem ipsum dolor sit amet consectetur. At vel elementum amet est nulla cras turpis. Fringilla ornare massa eu a sollicitudin vestibulum auctor risus. Elementum quam sit neque quis. A vestibulum consectetur tincidunt vitae.Lorem ipsum dolor sit amet consectetur.  At vel elementum amet est nulla cras turpis. Fringilla ornare massa eu a sollicitudin vestibulum auctor risus. Elementum quam sit neque quis. A vestibulum consectetur tincidunt vitae.Lorem ipsum dolor sit amet consectetur. At vel elementum amet est nulla cras turpis. Fringilla ornare massa eu a sollicitudin vestibulum auctor risus. Elementum quam sit neque quis. A vestibulum consectetur tincidunt vitae.",
-      reviews
-    );
+    return new RestaurantDetail(restaurant, response.data.description, reviews);
   }
 
-  async getRestaurants(): Promise<Restaurant[]> {
-    return Array.from({ length: 10 }).map(
-      (_, i) =>
-        new Restaurant(
-          `${i}`,
-          "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/99/17/f2/casa-manolo-leon.jpg?w=600&h=-1&s=1",
-          `Restaurant ${i}`,
-          "123 Main Street",
-          i,
-          i,
-          false
-        )
+  async getRestaurants(page: number, limit: number): Promise<Restaurant[]> {
+    const response = await client.get<RestaurantsListDTO>(
+      `/restaurant/list?page=${page}&limit=${limit}`
     );
+
+    const items = response.data.restaurantList.map((item) => {
+      return new Restaurant(
+        item._id,
+        item.image,
+        item.name,
+        item.address,
+        item.avgRating,
+        item.reviews.length,
+        false,
+        item.latlng.lat,
+        item.latlng.lng
+      );
+    });
+
+    return items;
+  }
+
+  async getFavoriteRestaurants(): Promise<Restaurant[]> {
+    return useStore.getState().favoriteRestaurants;
+  }
+
+  async addFavoriteRestaurant(restaurant: Restaurant): Promise<void> {
+    const favoriteRestaurant = new Restaurant(
+      restaurant.id,
+      restaurant.image,
+      restaurant.name,
+      restaurant.address,
+      restaurant.score,
+      restaurant.reviewsCount,
+      true,
+      restaurant.latitude,
+      restaurant.longitude
+    );
+
+    useStore.getState().addFavoriteRestaurant(favoriteRestaurant);
+  }
+
+  async removeFavoriteRestaurant(id: string): Promise<void> {
+    useStore.getState().removeFavoriteRestaurant(id);
   }
 }

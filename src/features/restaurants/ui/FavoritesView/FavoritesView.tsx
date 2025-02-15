@@ -7,9 +7,7 @@ import RestaurantsList from "../shared/components/RestaurantsList";
 import { useFavoritesViewModel } from "./useFavoritesViewModel";
 import NavigateToCreateFloatingButton from "@shared/ui/layout/NavigateToCreateFloatingButton";
 
-export const FavoritesView: ScreenComponent<"FavoritesTab"> = ({
-  navigation,
-}) => {
+export const FavoritesView: ScreenComponent<"FavoritesTab"> = () => {
   const { i18n } = useLingui();
   const t = useTheme();
   const {
@@ -17,6 +15,8 @@ export const FavoritesView: ScreenComponent<"FavoritesTab"> = ({
     handlePressFavoriteRestaurant,
     handlePressRestaurant,
     isFavoritesLoading,
+    isRefetching,
+    refetch,
   } = useFavoritesViewModel();
 
   return (
@@ -31,6 +31,8 @@ export const FavoritesView: ScreenComponent<"FavoritesTab"> = ({
             onRestaurantPress={handlePressRestaurant}
             onRestaurantFavoritePress={handlePressFavoriteRestaurant}
             restaurants={favorites}
+            onRefresh={refetch}
+            refreshing={isRefetching}
           />
         </SafeAreaView>
       </NavigateToCreateFloatingButton>

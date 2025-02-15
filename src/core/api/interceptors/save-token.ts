@@ -4,7 +4,6 @@ import { AxiosInstance } from "axios";
 export function loadSaveTokenInterceptor(client: AxiosInstance) {
   client.interceptors.response.use(
     async (response) => {
-      console.log("response", response.headers);
       const newAccessToken = response.headers["authorization"];
 
       if (newAccessToken) {

@@ -2,10 +2,11 @@ import { atoms as a, useTheme } from "@core/layout";
 import { Restaurant } from "@features/restaurants/domain/RestaurantModel";
 import { useLingui } from "@lingui/react";
 import { fnWithId } from "@shared/utils/fnWithId";
-import { FC, memo, useCallback } from "react";
+import { FC, memo, useCallback, useMemo } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  FlatListProps,
   Image,
   ImageStyle,
   ListRenderItem,
@@ -76,7 +77,7 @@ const RestaurantCard: FC<CardProps> = ({
         <Text numberOfLines={1} style={[a.font_xs_semibold]}>
           {restaurant.name}
         </Text>
-        <Text numberOfLines={1} style={[a.font_xss_regular]}>
+        <Text numberOfLines={1} style={[a.font_xss_regular, a.mr_xl]}>
           {restaurant.address}
         </Text>
         <IconButton
@@ -91,7 +92,7 @@ const RestaurantCard: FC<CardProps> = ({
           </View>
           {variant === "default" && (
             <Text numberOfLines={1} style={[a.font_xss_regular]}>
-              {`(${restaurant.score} ${i18n.t("Comentarios")})`}
+              {`(${Math.round(restaurant.score)} ${i18n.t("Comentarios")})`}
             </Text>
           )}
         </View>
@@ -102,13 +103,15 @@ const RestaurantCard: FC<CardProps> = ({
 
 type RestaurantListProps = {
   emptyMessage?: string;
-  horizontal?: boolean;
   isLoading?: boolean;
   onRestaurantFavoritePress: (id: string) => void;
   onRestaurantPress: (id: string) => void;
   restaurants: Restaurant[];
   style?: ViewStyle[];
-};
+} & Pick<
+  FlatListProps<Restaurant>,
+  "onRefresh" | "refreshing" | "onEndReached" | "horizontal"
+>;
 
 const RestaurantList: FC<RestaurantListProps> = ({
   onRestaurantPress,
@@ -118,6 +121,9 @@ const RestaurantList: FC<RestaurantListProps> = ({
   emptyMessage,
   horizontal = false,
   style,
+  onRefresh,
+  refreshing,
+  onEndReached,
 }) => {
   const renderItem: ListRenderItem<Restaurant> = useCallback(
     ({ item }) => {
@@ -133,13 +139,15 @@ const RestaurantList: FC<RestaurantListProps> = ({
     [horizontal, onRestaurantFavoritePress, onRestaurantPress]
   );
 
-  if (emptyMessage && !isLoading && restaurants.length === 0) {
-    return (
-      <View style={[a.flex_1, a.align_center, a.justify_center]}>
-        <Text style={[a.font_s_regular]}>{emptyMessage}</Text>
-      </View>
-    );
-  }
+  const renderEmptyComponent = useMemo(() => {
+    if (emptyMessage && !isLoading && restaurants.length === 0) {
+      return (
+        <View style={[a.flex_1, a.align_center, a.justify_center]}>
+          <Text style={[a.font_s_regular]}>{emptyMessage}</Text>
+        </View>
+      );
+    }
+  }, [emptyMessage, isLoading, restaurants.length]);
 
   if (isLoading) {
     return <ActivityIndicator style={[a.absolute, a.inset_0]} />;
@@ -147,7 +155,7 @@ const RestaurantList: FC<RestaurantListProps> = ({
 
   return (
     <FlatList
-      contentContainerStyle={[horizontal && a.px_xs]}
+      contentContainerStyle={[horizontal && a.px_xs, a.flex_1]}
       data={restaurants}
       decelerationRate="fast"
       horizontal={horizontal}
@@ -157,6 +165,10 @@ const RestaurantList: FC<RestaurantListProps> = ({
       snapToInterval={HORIZONTAL_CARD_WIDTH + HORIZONTAL_CARD_SPACING}
       style={[style]}
       testID="restaurants-list"
+      refreshing={refreshing}
+      onRefresh={onRefresh}
+      onEndReached={onEndReached}
+      ListEmptyComponent={renderEmptyComponent}
     />
   );
 };

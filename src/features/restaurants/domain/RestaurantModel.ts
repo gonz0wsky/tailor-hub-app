@@ -6,7 +6,9 @@ export class Restaurant {
     address: string,
     score: number,
     reviewsCount: number,
-    isFavorite: boolean
+    isFavorite: boolean,
+    latitude: number,
+    longitude: number
   ) {
     this.id = id;
     this.image = image;
@@ -15,6 +17,8 @@ export class Restaurant {
     this.score = score;
     this.reviewsCount = reviewsCount;
     this.isFavorite = isFavorite;
+    this.latitude = latitude;
+    this.longitude = longitude;
   }
 
   readonly id: string;
@@ -24,4 +28,6 @@ export class Restaurant {
   readonly score: number;
   readonly reviewsCount: number;
   readonly isFavorite: boolean;
+  readonly latitude: number;
+  readonly longitude: number;
 }

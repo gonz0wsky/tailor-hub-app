@@ -4,7 +4,7 @@ import { RestaurantRepository } from "../domain/RestaurantRepository";
 export class GetRestaurantsListUseCase {
   constructor(private restaurantRepository: RestaurantRepository) {}
 
-  async execute(): Promise<Restaurant[]> {
-    return this.restaurantRepository.getRestaurants();
+  async execute(page: number, limit: number): Promise<Restaurant[]> {
+    return this.restaurantRepository.getRestaurants(page, limit);
   }
 }

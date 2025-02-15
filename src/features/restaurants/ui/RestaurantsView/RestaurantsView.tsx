@@ -11,9 +11,7 @@ import { useCallback } from "react";
 import Map from "./Map";
 import NavigateToCreateFloatingButton from "@shared/ui/layout/NavigateToCreateFloatingButton";
 
-export const RestaurantsView: ScreenComponent<"Restaurants"> = ({
-  navigation,
-}) => {
+export const RestaurantsView: ScreenComponent<"Restaurants"> = () => {
   const { i18n } = useLingui();
   const t = useTheme();
   const {
@@ -23,6 +21,9 @@ export const RestaurantsView: ScreenComponent<"Restaurants"> = ({
     isRestaurantsLoading,
     restaurants,
     setCurrentPage,
+    isRefetching,
+    refetch,
+    handleOnEndReached,
   } = useRestaurantsViewModel();
 
   const iconColor = useCallback(
@@ -61,6 +62,9 @@ export const RestaurantsView: ScreenComponent<"Restaurants"> = ({
             onRestaurantFavoritePress={handlePressFavoriteRestaurant}
             onRestaurantPress={handlePressRestaurant}
             restaurants={restaurants}
+            onRefresh={refetch}
+            refreshing={isRefetching}
+            onEndReached={handleOnEndReached}
           />
         )}
         {currentPage === "map" && <Map restaurants={restaurants} />}

@@ -1,7 +1,13 @@
 import { atoms as a, useTheme } from "@core/layout";
 import { Review } from "@features/restaurants/domain/ReviewModel";
 import { FC, memo, ReactElement } from "react";
-import { ListRenderItem, Text, View, ViewStyle } from "react-native";
+import {
+  FlatListProps,
+  ListRenderItem,
+  Text,
+  View,
+  ViewStyle,
+} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import Score from "../../shared/components/Score";
 import Button from "@shared/ui/components/Button";
@@ -57,7 +63,7 @@ type ReviewListProps = {
   onPressEdit: (id: string) => void;
   reviews: Review[];
   style?: ViewStyle[];
-};
+} & Pick<FlatListProps<Review>, "onRefresh" | "refreshing">;
 
 const ReviewList: FC<ReviewListProps> = ({
   children,
@@ -65,6 +71,8 @@ const ReviewList: FC<ReviewListProps> = ({
   onPressEdit,
   reviews,
   style,
+  onRefresh,
+  refreshing,
 }) => {
   const renderItem: ListRenderItem<Review> = ({ item }) => {
     return (
@@ -84,6 +92,8 @@ const ReviewList: FC<ReviewListProps> = ({
       style={style}
       contentContainerStyle={[a.px_lg]}
       ItemSeparatorComponent={Separator}
+      onRefresh={onRefresh}
+      refreshing={refreshing}
     />
   );
 };
