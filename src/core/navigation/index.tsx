@@ -7,6 +7,7 @@ import type { AllNavigatorParamList } from "./routes/params";
 
 import { PublicNavigator } from "./public-navigation";
 import { TabsNavigator } from "./tabs-navigation";
+import { useStore } from "@core/store";
 
 const linking: LinkingOptions<AllNavigatorParamList> = {
   prefixes: [],
@@ -16,12 +17,12 @@ const linking: LinkingOptions<AllNavigatorParamList> = {
 };
 
 export const Navigator = () => {
-  const isLogged = false;
+  const isLoggedIn = useStore((state) => state.loggedUser);
 
   return (
     <NavigationContainer linking={linking}>
-      {!isLogged && <PublicNavigator />}
-      {isLogged && <TabsNavigator />}
+      {!isLoggedIn && <PublicNavigator />}
+      {isLoggedIn && <TabsNavigator />}
     </NavigationContainer>
   );
 };

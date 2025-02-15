@@ -10,8 +10,15 @@ import { useSignInViewModel } from "./useSignInViewModel";
 export const SignInView: ScreenComponent<"SignIn"> = () => {
   const t = useTheme();
   const safe = useSafeArea();
-  const { formStep, handlePressBack, handlePressRegister, handleLogin } =
-    useSignInViewModel();
+  const {
+    formStep,
+    handleLogin,
+    handlePressBack,
+    handlePressRegister,
+    handleSubmitStepOne,
+    handleSubmitStepTwo,
+    isLoading,
+  } = useSignInViewModel();
 
   return (
     <KeyboardAvoidingView
@@ -39,18 +46,21 @@ export const SignInView: ScreenComponent<"SignIn"> = () => {
           <LoginForm
             onSubmit={handleLogin}
             onPressRegister={handlePressRegister}
+            isLoading={isLoading}
           />
         )}
         {formStep === "register-step-one" && (
           <RegisterStepOneForm
-            onSubmit={() => {}}
+            onSubmit={handleSubmitStepOne}
             onPressBack={handlePressBack}
+            isLoading={isLoading}
           />
         )}
         {formStep === "register-step-two" && (
           <RegisterStepTwoForm
-            onSubmit={() => {}}
+            onSubmit={handleSubmitStepTwo}
             onPressBack={handlePressBack}
+            isLoading={isLoading}
           />
         )}
       </View>

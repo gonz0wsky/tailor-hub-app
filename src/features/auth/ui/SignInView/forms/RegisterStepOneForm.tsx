@@ -11,11 +11,16 @@ import { z } from "zod";
 import FormTextInput from "@shared/ui/components/FormTextInput";
 
 type Props = {
+  isLoading: boolean;
   onPressBack: () => void;
   onSubmit: (email: string, name: string) => void;
 };
 
-const RegisterStepOneForm: FC<Props> = ({ onPressBack, onSubmit }) => {
+const RegisterStepOneForm: FC<Props> = ({
+  isLoading,
+  onPressBack,
+  onSubmit,
+}) => {
   const { i18n } = useLingui();
 
   const { control, handleSubmit } = useForm<{
@@ -60,6 +65,7 @@ const RegisterStepOneForm: FC<Props> = ({ onPressBack, onSubmit }) => {
         testID="submit-button"
         title={i18n.t("Siguiente")}
         onPress={onPressSubmit}
+        loading={isLoading}
       />
     </View>
   );

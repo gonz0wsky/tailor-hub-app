@@ -13,9 +13,14 @@ import FormTextInput from "@shared/ui/components/FormTextInput";
 type Props = {
   onSubmit: (password: string) => void;
   onPressBack: () => void;
+  isLoading: boolean;
 };
 
-const RegisterStepTwoForm: FC<Props> = ({ onPressBack, onSubmit }) => {
+const RegisterStepTwoForm: FC<Props> = ({
+  isLoading,
+  onPressBack,
+  onSubmit,
+}) => {
   const { i18n } = useLingui();
 
   const { control, handleSubmit } = useForm<{
@@ -50,6 +55,7 @@ const RegisterStepTwoForm: FC<Props> = ({ onPressBack, onSubmit }) => {
         testID="submit-button"
         title={i18n.t("Finalizar")}
         onPress={onPressSubmit}
+        loading={isLoading}
       />
     </View>
   );

@@ -1,35 +1,40 @@
-import type {SystemTheme} from '@core/layout/utils/useColorModeTheme';
-import type {Language} from '@core/locale/locales/types';
-import type {StateCreator} from 'zustand';
-import {sliceResetFns} from './clearStorage';
+import type { SystemTheme } from "@core/layout/utils/useColorModeTheme";
+import type { Language } from "@core/locale/locales/types";
+import type { StateCreator } from "zustand";
+import { sliceResetFns } from "./clearStorage";
+import { Me } from "@shared/domain/Me";
 
 export interface SystemSlice {
   language: Language;
-  onboardingCompleted: boolean;
   setLanguage: (language: Language) => void;
-  setOnboardingCompleted: (onboardingCompleted: boolean) => void;
-  setTheme: (theme: SystemTheme) => void;
   theme: SystemTheme;
+  setTheme: (theme: SystemTheme) => void;
+  isOnboardingCompleted: boolean;
+  setIsOnboardingCompleted: (onboardingCompleted: boolean) => void;
+  loggedUser: Me | null;
+  setLoggedUser: (loggedUser: Me | null) => void;
 }
 
 const initialState: Pick<
   SystemSlice,
-  'language' | 'theme' | 'onboardingCompleted'
+  "language" | "theme" | "isOnboardingCompleted" | "loggedUser"
 > = {
-  language: 'en',
-  theme: 'system',
-  onboardingCompleted: false,
+  language: "en",
+  theme: "system",
+  isOnboardingCompleted: false,
+  loggedUser: null,
 };
 
-const createSystemSlice: StateCreator<SystemSlice> = set => {
+const createSystemSlice: StateCreator<SystemSlice> = (set) => {
   sliceResetFns.add(() => set(() => initialState));
 
   return {
     ...initialState,
-    setOnboardingCompleted: (onboardingCompleted: boolean) =>
-      set(() => ({onboardingCompleted})),
-    setLanguage: (language: Language) => set(() => ({language})),
-    setTheme: (theme: SystemTheme) => set(() => ({theme})),
+    setIsOnboardingCompleted: (onboardingCompleted: boolean) =>
+      set(() => ({ isOnboardingCompleted: onboardingCompleted })),
+    setLanguage: (language: Language) => set(() => ({ language })),
+    setTheme: (theme: SystemTheme) => set(() => ({ theme })),
+    setLoggedUser: (loggedUser: Me | null) => set(() => ({ loggedUser })),
   };
 };
 

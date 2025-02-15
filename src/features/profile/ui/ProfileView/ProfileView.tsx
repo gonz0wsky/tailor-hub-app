@@ -13,7 +13,11 @@ export const ProfileView: ScreenComponent<"ProfileTab"> = ({ navigation }) => {
   const { i18n } = useLingui();
   const t = useTheme();
 
-  const { profile } = useProfileViewModel();
+  const { profile, isLogoutLoading, handlePressLogout } = useProfileViewModel();
+
+  if (!profile) {
+    return null; // profile must be loaded
+  }
 
   return (
     <SafeAreaView style={[a.flex_1, t.atoms.background.primary]}>
@@ -44,7 +48,12 @@ export const ProfileView: ScreenComponent<"ProfileTab"> = ({ navigation }) => {
               onSubmit={() => {}}
               initialValue={profile.address}
             />
-            <Button title={i18n.t("Salir")} variant="secondary" />
+            <Button
+              title={i18n.t("Salir")}
+              variant="secondary"
+              onPress={handlePressLogout}
+              loading={isLogoutLoading}
+            />
           </View>
         </ScrollView>
       </NavigateToCreateFloatingButton>

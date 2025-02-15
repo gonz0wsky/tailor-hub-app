@@ -1,14 +1,17 @@
-import { Me } from "@features/profile/domain/Me";
+import { useStore } from "@core/store";
+import { useLogoutMutation } from "@features/profile/data/useLogoutMutation";
+import { Me } from "@shared/domain/Me";
+import { useCallback } from "react";
 
 export const useProfileViewModel = () => {
-  const profile = new Me(
-    "1",
-    "Gonzalo",
-    "123456789",
-    "19/09/1990",
-    "Calle de la República, 123",
-    "https://static.dezeen.com/uploads/2019/07/lucky-cat-restaurant-interiors-london-afroditi-krassa_dezeen_2364_col_13-852x568.jpg"
-  );
+  const profile = useStore((state) => state.loggedUser);
 
-  return { profile };
+  const { mutateAsync: logoutUser, isPending: isLogoutLoading } =
+    useLogoutMutation();
+
+  const handlePressLogout = useCallback(async () => {
+    await logoutUser();
+  }, [logoutUser]);
+
+  return { profile, isLogoutLoading, handlePressLogout };
 };

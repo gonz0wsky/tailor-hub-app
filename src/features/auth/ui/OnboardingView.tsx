@@ -4,6 +4,7 @@ import { useLingui } from "@lingui/react";
 import Button from "@shared/ui/components/Button";
 import { Image, SafeAreaView, Text, View } from "react-native";
 import { msg } from "@lingui/core/macro";
+import { useStore } from "@core/store";
 
 const WELCOME_TEXT = msg`Hola,
 Bienvenido a la prueba de Tailor hub, en ella has de añadir los restaurantes favoritos donde te gustaría ir en tu onboarding.`;
@@ -11,6 +12,15 @@ Bienvenido a la prueba de Tailor hub, en ella has de añadir los restaurantes fa
 export const OnboardingView: ScreenComponent<"Onboarding"> = () => {
   const { i18n } = useLingui();
   const t = useTheme();
+
+  const setIsOnboardingCompleted = useStore(
+    (state) => state.setIsOnboardingCompleted
+  );
+
+  const handlePress = () => {
+    setIsOnboardingCompleted(true);
+  };
+
   return (
     <SafeAreaView style={[a.flex_1, t.atoms.background.primary]}>
       <View
@@ -36,6 +46,7 @@ export const OnboardingView: ScreenComponent<"Onboarding"> = () => {
             style={[a.mt_2xl]}
             title={i18n.t("Entrar")}
             variant="secondary"
+            onPress={handlePress}
           />
         </View>
       </View>

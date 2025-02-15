@@ -10,11 +10,12 @@ import { z } from "zod";
 import { emailSchema, passwordSchema } from "@shared/validations";
 
 type Props = {
-  onSubmit: (email: string, password: string) => void;
+  isLoading: boolean;
   onPressRegister: () => void;
+  onSubmit: (email: string, password: string) => void;
 };
 
-const LoginForm: FC<Props> = ({ onSubmit, onPressRegister }) => {
+const LoginForm: FC<Props> = ({ isLoading, onSubmit, onPressRegister }) => {
   const t = useTheme();
   const { i18n } = useLingui();
 
@@ -62,6 +63,7 @@ const LoginForm: FC<Props> = ({ onSubmit, onPressRegister }) => {
         testID="login-button"
         title={i18n.t("Entrar")}
         onPress={onPressSubmit}
+        loading={isLoading}
       />
       <View style={[a.flex_row]}>
         <Text style={[t.atoms.text.secondary]}>
