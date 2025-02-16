@@ -155,7 +155,10 @@ const RestaurantList: FC<RestaurantListProps> = ({
 
   return (
     <FlatList
-      contentContainerStyle={[horizontal && a.px_xs, a.flex_1]}
+      contentContainerStyle={[
+        horizontal && a.px_xs,
+        restaurants.length === 0 && a.flex_1,
+      ]}
       data={restaurants}
       decelerationRate="fast"
       horizontal={horizontal}
