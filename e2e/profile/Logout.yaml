@@ -1,0 +1,12 @@
+appId: com.anonymous.tailorhubapp
+---
+- tapOn:
+      id: "bottom-tab-2"
+
+- assertVisible: 
+      id: "logout-button"
+- tapOn:
+      id: "logout-button"
+
+- assertVisible: 
+      id: "form-email-input"

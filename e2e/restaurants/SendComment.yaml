@@ -1,0 +1,30 @@
+appId: com.anonymous.tailorhubapp
+---
+
+- tapOn:
+      id: "restaurant-card"
+      index: 0
+
+- assertVisible: 
+      id: "comment-card"
+
+- tapOn:
+      id: "review-score-1"
+- tapOn:
+      id: "review-score-2"
+- tapOn:
+      id: "review-score-3"
+- tapOn:
+      id: "review-score-4"
+- tapOn:
+      id: "review-score-5"
+
+- tapOn:
+      id: "comment-input"
+- inputText: "Great place!"
+
+- tapOn:
+      id: "back-button"
+
+# TODO: REST not implemented yet
+

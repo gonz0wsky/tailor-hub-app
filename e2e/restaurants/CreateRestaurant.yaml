@@ -1,0 +1,27 @@
+appId: com.anonymous.tailorhubapp
+---
+
+- tapOn:
+      id: "create-restaurant-button"
+
+- tapOn:
+      id: "form-name-input"
+- inputText: "Restaurante de prueba"
+
+- tapOn:
+      id: "form-address-input"
+- inputText: "Calle de prueba"
+
+- scroll
+
+- tapOn:
+      id: "form-description-input"
+- inputText: "Descripción de prueba"
+
+- scroll
+
+# TODO: REST not implemented yet
+
+- tapOn:
+      id: "cancel-button"
+

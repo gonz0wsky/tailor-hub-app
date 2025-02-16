@@ -1,0 +1,6 @@
+appId: com.anonymous.tailorhubapp
+---
+- assertVisible: 
+      id: "onboarding-enter-button"
+- tapOn:
+      id: "onboarding-enter-button"

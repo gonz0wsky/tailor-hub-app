@@ -1,0 +1,14 @@
+appId: com.anonymous.tailorhubapp
+---
+
+- tapOn:
+      id: "restaurant-card-like-button"
+      index: 0
+
+- tapOn:
+      id: "restaurant-card-like-button"
+      index: 2
+
+- tapOn:
+      id: "restaurant-card-like-button"
+      index: 4

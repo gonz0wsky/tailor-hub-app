@@ -1,0 +1,12 @@
+appId: com.anonymous.tailorhubapp
+---
+- tapOn:
+    id: "form-email-input"
+- inputText: "moly@mail.com"
+
+- tapOn:
+    id: "form-password-input"
+- inputText: "abc123_"
+
+- tapOn:
+    id: "login-button"

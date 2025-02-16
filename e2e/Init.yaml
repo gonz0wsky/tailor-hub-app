@@ -1,0 +1,59 @@
+appId: com.anonymous.tailorhubapp
+name: Init flow
+---
+- launchApp:
+    clearState: true
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-enter-button"
+    file: Onboarding.yaml
+
+- runFlow:
+    when:
+      visible:
+        id: "form-email-input"
+    file: Login.yaml
+
+- runFlow:
+    when:
+      visible:
+        id: "restaurants-list"
+    file: restaurants/ViewRestaurantDetail.yaml
+
+- runFlow:
+    when:
+      visible:
+        id: "restaurants-list"
+    file: restaurants/SendComment.yaml
+
+- runFlow: 
+    when:
+      visible:
+        id: "restaurants-list"
+    file: restaurants/CreateRestaurant.yaml
+
+- runFlow:
+    when:
+      visible:
+        id: "restaurants-list"
+    file: restaurants/SetFavorite.yaml
+
+- runFlow:
+    when:
+      visible:
+        id: "restaurants-list"
+    file: favorites/ViewFavorites.yaml
+
+- runFlow:
+    when:
+      visible:
+        id: "bottom-tab-2"
+    file: profile/UpdateProfile.yaml
+
+- runFlow:
+    when:
+      visible:
+        id: "bottom-tab-2"
+    file: profile/Logout.yaml

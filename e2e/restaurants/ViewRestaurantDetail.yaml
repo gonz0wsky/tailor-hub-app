@@ -1,0 +1,18 @@
+appId: com.anonymous.tailorhubapp
+---
+- assertVisible: 
+      id: "restaurants-list"
+
+- assertVisible: 
+      id: "restaurant-card-button"
+      index: 0
+
+- tapOn:
+      id: "restaurant-card"
+      index: 0
+
+- assertVisible: 
+      id: "detail-header"
+
+- tapOn:
+      id: "back-button"

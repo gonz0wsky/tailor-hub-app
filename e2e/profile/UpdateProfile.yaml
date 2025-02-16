@@ -1,0 +1,31 @@
+appId: com.anonymous.tailorhubapp
+---
+- tapOn:
+      id: "bottom-tab-2"
+
+- assertVisible: 
+      id: "form-dni-input"
+- tapOn:
+      id: "form-dni-input"
+- inputText: "9999999999A"
+- tapOn:
+      id: "form-dni-submit-button"
+- assertVisible: "9999999999A"
+
+- assertVisible: 
+      id: "form-birthday-input"
+- tapOn:
+      id: "form-birthday-input"
+- inputText: "10/10/2000"
+- tapOn:
+      id: "form-birthday-submit-button"
+- assertVisible: "10/10/2000"
+
+- assertVisible: 
+      id: "form-address-input"
+- tapOn:
+      id: "form-address-input"
+- inputText: "Calle de prueba"
+- tapOn:
+      id: "form-address-submit-button"
+- assertVisible: "Calle de prueba"
