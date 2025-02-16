@@ -10,6 +10,7 @@ type Props = {
   title: string;
   subtitle: string;
   image: string;
+  isFavorite: boolean;
 };
 
 const DetailHeader: FC<Props> = ({
@@ -18,6 +19,7 @@ const DetailHeader: FC<Props> = ({
   onPressFavorite,
   subtitle,
   title,
+  isFavorite,
 }) => {
   const t = useTheme();
 
@@ -44,7 +46,7 @@ const DetailHeader: FC<Props> = ({
           variant="secondary"
         />
         <IconButton
-          name="hearth"
+          name={isFavorite ? "hearth-filled" : "hearth"}
           onPress={onPressFavorite}
           size={24}
           style={a.p_xs}

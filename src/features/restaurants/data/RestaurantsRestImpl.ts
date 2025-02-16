@@ -14,6 +14,13 @@ export class RestaurantsRestImpl implements RestaurantRepository {
       `/restaurant/detail/${id}`
     );
 
+    if (response.status !== 200) {
+      throw new Error("Error getting restaurant");
+    }
+
+    // TODO - this should persisted in backend
+    const favorites = useStore.getState().favoriteRestaurants;
+
     const restaurant = new Restaurant(
       response.data._id,
       response.data.image,
@@ -21,7 +28,7 @@ export class RestaurantsRestImpl implements RestaurantRepository {
       response.data.address,
       response.data.avgRating,
       response.data.reviews.length,
-      false,
+      favorites.some((restaurant) => restaurant.id === id),
       response.data.latlng.lat,
       response.data.latlng.lng
     );
@@ -45,6 +52,13 @@ export class RestaurantsRestImpl implements RestaurantRepository {
       `/restaurant/list?page=${page}&limit=${limit}`
     );
 
+    if (response.status !== 200) {
+      throw new Error("Error getting restaurants");
+    }
+
+    // TODO - this should persisted in backend
+    const favorites = useStore.getState().favoriteRestaurants;
+
     const items = response.data.restaurantList.map((item) => {
       return new Restaurant(
         item._id,
@@ -53,7 +67,7 @@ export class RestaurantsRestImpl implements RestaurantRepository {
         item.address,
         item.avgRating,
         item.reviews.length,
-        false,
+        favorites.some((restaurant) => restaurant.id === item._id),
         item.latlng.lat,
         item.latlng.lng
       );

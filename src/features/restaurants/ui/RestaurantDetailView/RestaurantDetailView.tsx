@@ -20,6 +20,7 @@ export const RestaurantDetailView: ScreenComponent<"RestaurantDetail"> = ({
   return (
     <SafeAreaView style={[a.flex_1, t.atoms.background.primary]}>
       <DetailHeader
+        isFavorite={data.restaurant.isFavorite}
         image={data.restaurant.image}
         onPressBack={handlePressBack}
         onPressFavorite={() => {}}
