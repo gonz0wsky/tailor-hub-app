@@ -7,4 +7,9 @@ export interface RestaurantRepository {
   getFavoriteRestaurants(): Promise<Restaurant[]>;
   addFavoriteRestaurant(restaurant: Restaurant): Promise<void>;
   removeFavoriteRestaurant(id: string): Promise<void>;
+  createComment(
+    restaurantId: string,
+    comment: string,
+    score: number
+  ): Promise<void>;
 }

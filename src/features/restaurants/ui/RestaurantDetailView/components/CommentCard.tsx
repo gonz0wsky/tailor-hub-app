@@ -1,7 +1,7 @@
 import { atoms as a, useTheme } from "@core/layout";
 import { useLingui } from "@lingui/react";
 import Button from "@shared/ui/components/Button";
-import { FC, memo, useCallback } from "react";
+import { FC, memo, useCallback, useState } from "react";
 import { TextInput, View, ViewStyle } from "react-native";
 import Score from "../../shared/components/Score";
 import { Controller, useForm, useWatch } from "react-hook-form";
@@ -10,13 +10,15 @@ import { z } from "zod";
 import { CONFIG } from "@core/config/config";
 
 type Props = {
-  onSubmit: (content: string, score: number) => void;
+  onSubmit: (content: string, score: number) => Promise<void>;
   style?: ViewStyle[];
 };
 
 const CommentCard: FC<Props> = ({ onSubmit, style }) => {
   const { i18n } = useLingui();
   const t = useTheme();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const { control, handleSubmit, setValue, formState } = useForm<{
     content: string;
@@ -45,8 +47,10 @@ const CommentCard: FC<Props> = ({ onSubmit, style }) => {
   );
 
   const handleOnSubmit = useCallback(() => {
-    handleSubmit((data) => {
-      onSubmit(data.content, data.score);
+    handleSubmit(async (data) => {
+      setIsLoading(true);
+      await onSubmit(data.content, data.score);
+      setIsLoading(false);
     })();
   }, [handleSubmit, onSubmit]);
 
@@ -72,6 +76,8 @@ const CommentCard: FC<Props> = ({ onSubmit, style }) => {
         style={[a.align_start]}
         variant="secondary"
         title={i18n.t("Enviar")}
+        onPress={handleOnSubmit}
+        loading={isLoading}
       />
     </View>
   );

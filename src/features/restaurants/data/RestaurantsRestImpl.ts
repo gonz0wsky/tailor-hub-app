@@ -99,4 +99,30 @@ export class RestaurantsRestImpl implements RestaurantRepository {
   async removeFavoriteRestaurant(id: string): Promise<void> {
     useStore.getState().removeFavoriteRestaurant(id);
   }
+
+  async createComment(
+    restaurantId: string,
+    comment: string,
+    score: number
+  ): Promise<void> {
+    const loggedUser = useStore.getState().loggedUser;
+
+    if (!loggedUser) {
+      throw new Error("User not logged in");
+    }
+
+    const response = await client.post<void>(
+      `/restaurant/${restaurantId}/comment`,
+      {
+        name: loggedUser.name,
+        date: new Date().toISOString(),
+        rating: score,
+        comments: comment,
+      }
+    );
+
+    if (response.status !== 201) {
+      throw new Error("Error creating comment");
+    }
+  }
 }
