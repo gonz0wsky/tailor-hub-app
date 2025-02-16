@@ -4,7 +4,7 @@ Instala las dependencias
 yarn
 ```
 
-Instala las traducciones (no tiene traducciones)
+Instala las traducciones (no tiene traducciones pero son necesarias :P)
 
 ```
 yarn lingui:rebuild
@@ -13,8 +13,6 @@ yarn lingui:rebuild
 Ejecuta la aplicación
 
 ```
-pod install --project-directory=ios
-
 yarn ios
 yarn android
 ```
