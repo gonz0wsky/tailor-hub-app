@@ -4,7 +4,7 @@ appId: com.anonymous.tailorhubapp
       id: "restaurants-list"
 
 - assertVisible: 
-      id: "restaurant-card-button"
+      id: "restaurant-card"
       index: 0
 
 - tapOn:
