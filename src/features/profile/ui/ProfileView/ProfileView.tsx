@@ -13,7 +13,14 @@ export const ProfileView: ScreenComponent<"ProfileTab"> = ({ navigation }) => {
   const { i18n } = useLingui();
   const t = useTheme();
 
-  const { profile, isLogoutLoading, handlePressLogout } = useProfileViewModel();
+  const {
+    profile,
+    isLogoutLoading,
+    handlePressLogout,
+    handleUpdateAddress,
+    handleUpdateBirthday,
+    handleUpdateDni,
+  } = useProfileViewModel();
 
   if (!profile) {
     return null; // profile must be loaded
@@ -35,17 +42,17 @@ export const ProfileView: ScreenComponent<"ProfileTab"> = ({ navigation }) => {
           <View style={[a.gap_5xl, a.mt_2xl]}>
             <SoloInput
               label={i18n.t("DNI")}
-              onSubmit={() => {}}
+              onSubmit={handleUpdateDni}
               initialValue={profile.dni}
             />
             <SoloInput
               label={i18n.t("Fecha de nacimiento")}
-              onSubmit={() => {}}
+              onSubmit={handleUpdateBirthday}
               initialValue={profile.birthday}
             />
             <SoloInput
               label={i18n.t("Dirección")}
-              onSubmit={() => {}}
+              onSubmit={handleUpdateAddress}
               initialValue={profile.address}
             />
             <Button

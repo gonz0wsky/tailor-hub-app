@@ -1,9 +1,9 @@
-import { LogoutRepository } from "../domain/LogoutRepository";
+import { ProfileRepository } from "../domain/ProfileRepository";
 
 export class LogoutUserUseCase {
-  constructor(private authRepository: LogoutRepository) {}
+  constructor(private repository: ProfileRepository) {}
 
   async execute() {
-    await this.authRepository.logout();
+    await this.repository.logout();
   }
 }
