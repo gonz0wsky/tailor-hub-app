@@ -34,6 +34,7 @@ export const BottomBar: FC<BottomTabBarProps> = ({ navigation, state }) => {
       return (
         <RectButton
           key={route.key}
+          testID={`bottom-tab-${index}`}
           onPress={onPress}
           style={[
             {

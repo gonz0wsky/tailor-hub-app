@@ -55,13 +55,17 @@ const CommentCard: FC<Props> = ({ onSubmit, style }) => {
   }, [handleSubmit, onSubmit]);
 
   return (
-    <View style={[style, a.border, a.rounded_xl, a.p_lg, a.gap_lg]}>
+    <View
+      testID="comment-card"
+      style={[style, a.border, a.rounded_xl, a.p_lg, a.gap_lg]}
+    >
       <Score editable onChange={handleOnChangeScore} score={score ?? 0} />
       <Controller
         name="content"
         control={control}
         render={({ field: { onBlur, onChange, value } }) => (
           <TextInput
+            testID="comment-input"
             style={[a.font_xs_regular]}
             placeholderTextColor={t.atoms.text.primary_60.color}
             placeholder={i18n.t("Escribe tu comentario sobre el restaurante")}
@@ -72,6 +76,7 @@ const CommentCard: FC<Props> = ({ onSubmit, style }) => {
         )}
       />
       <Button
+        testID="comment-send-button"
         disabled={!formState.isValid}
         style={[a.align_start]}
         variant="secondary"

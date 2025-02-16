@@ -28,6 +28,7 @@ const Score: FC<Props> = ({
       {Array.from({ length: CONFIG.MAX_REVIEW_SCORE }).map((_, i) => (
         <BorderlessButton
           key={i}
+          testID={`review-score-${i + 1}`}
           enabled={editable}
           onPress={onChange ? fnWithId(onChange, i + 1) : undefined}
         >

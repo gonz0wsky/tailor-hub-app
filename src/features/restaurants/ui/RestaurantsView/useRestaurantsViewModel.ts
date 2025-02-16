@@ -42,8 +42,9 @@ export const useRestaurantsViewModel = () => {
         action: isfavorite ? "remove" : "add",
         restaurant,
       });
+      await refetch();
     },
-    [restaurants, setFavoriteRestaurant]
+    [refetch, restaurants, setFavoriteRestaurant]
   );
 
   const handleOnEndReached = useCallback(async () => {

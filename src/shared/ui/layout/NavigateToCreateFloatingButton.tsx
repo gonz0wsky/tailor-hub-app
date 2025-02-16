@@ -20,6 +20,7 @@ const NavigateToCreateFloatingButton: FC<Props> = ({ children }) => {
     <>
       {children}
       <IconButton
+        testID="create-restaurant-button"
         name="plus"
         onPress={handlePress}
         size={32}

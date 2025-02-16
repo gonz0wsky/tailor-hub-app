@@ -73,6 +73,7 @@ const SoloInput: FC<Props> = ({
               keyboardType="default"
             />
             <IconButton
+              testID={`${testID}-submit-button`}
               enabled={!!value}
               style={[a.absolute, a.right_0, { bottom: 16 }]}
               name="pen"

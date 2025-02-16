@@ -42,6 +42,7 @@ export const OnboardingView: ScreenComponent<"Onboarding"> = () => {
             {i18n.t(WELCOME_TEXT)}
           </Text>
           <Button
+            testID="onboarding-enter-button"
             size="small"
             style={[a.mt_2xl]}
             title={i18n.t("Entrar")}

@@ -54,7 +54,7 @@ const RestaurantCard: FC<CardProps> = ({
 
   return (
     <RectButton
-      testID={`restaurant-card-button-${restaurant.id}`}
+      testID={`restaurant-card`}
       onPress={fnWithId(onCardPress, restaurant.id)}
       style={[
         restaurantCardButtonStyle[variant],
@@ -81,7 +81,7 @@ const RestaurantCard: FC<CardProps> = ({
           {restaurant.address}
         </Text>
         <IconButton
-          testID={`restaurant-card-like-button-${restaurant.id}`}
+          testID={`restaurant-card-like-button`}
           style={[a.absolute, { right: 0 }]}
           onPress={fnWithId(onFavoritePress, restaurant.id)}
           name={restaurant.isFavorite ? "hearth-filled" : "hearth"}

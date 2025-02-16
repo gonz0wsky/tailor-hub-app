@@ -24,7 +24,10 @@ const DetailHeader: FC<Props> = ({
   const t = useTheme();
 
   return (
-    <View style={[{ width: "100%", aspectRatio: 1.59 }, a.p_lg]}>
+    <View
+      testID="detail-header"
+      style={[{ width: "100%", aspectRatio: 1.59 }, a.p_lg]}
+    >
       <Image source={image} style={[a.flex_1, a.rounded_lg]} />
       <View
         style={[
@@ -44,6 +47,7 @@ const DetailHeader: FC<Props> = ({
           size={24}
           style={a.p_xs}
           variant="secondary"
+          testID="back-button"
         />
         <IconButton
           name={isFavorite ? "hearth-filled" : "hearth"}

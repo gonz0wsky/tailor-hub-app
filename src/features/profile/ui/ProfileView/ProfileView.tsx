@@ -41,21 +41,25 @@ export const ProfileView: ScreenComponent<"ProfileTab"> = ({ navigation }) => {
           </View>
           <View style={[a.gap_5xl, a.mt_2xl]}>
             <SoloInput
+              testID="form-dni"
               label={i18n.t("DNI")}
               onSubmit={handleUpdateDni}
               initialValue={profile.dni}
             />
             <SoloInput
+              testID="form-birthday"
               label={i18n.t("Fecha de nacimiento")}
               onSubmit={handleUpdateBirthday}
               initialValue={profile.birthday}
             />
             <SoloInput
+              testID="form-address"
               label={i18n.t("Dirección")}
               onSubmit={handleUpdateAddress}
               initialValue={profile.address}
             />
             <Button
+              testID="logout-button"
               title={i18n.t("Salir")}
               variant="secondary"
               onPress={handlePressLogout}
