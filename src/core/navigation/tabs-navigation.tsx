@@ -6,9 +6,9 @@ import {
 } from "@react-navigation/bottom-tabs";
 
 import { RestaurantsNavigator } from "./restaurants-navigation";
+import { FavoritesNavigator } from "./favorites-navigation";
 
 import type { TabNavigatorParamList } from "./routes/params";
-import { FavoritesView } from "@features/restaurants/ui/FavoritesView/FavoritesView";
 import { ProfileView } from "@features/profile/ui/ProfileView/ProfileView";
 import { BottomBar } from "./ui/BottomBar";
 
@@ -31,7 +31,7 @@ export const TabsNavigator = () => {
       screenOptions={screenOptions}
     >
       <Screen name="RestaurantsTab" component={RestaurantsNavigator} />
-      <Screen name="FavoritesTab" component={FavoritesView} />
+      <Screen name="FavoritesTab" component={FavoritesNavigator} />
       <Screen name="ProfileTab" component={ProfileView} />
     </Navigator>
   );

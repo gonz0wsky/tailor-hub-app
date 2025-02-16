@@ -7,7 +7,7 @@ import RestaurantsList from "../shared/components/RestaurantsList";
 import { useFavoritesViewModel } from "./useFavoritesViewModel";
 import NavigateToCreateFloatingButton from "@shared/ui/layout/NavigateToCreateFloatingButton";
 
-export const FavoritesView: ScreenComponent<"FavoritesTab"> = () => {
+export const FavoritesView: ScreenComponent<"Favorites"> = () => {
   const { i18n } = useLingui();
   const t = useTheme();
   const {

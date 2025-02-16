@@ -13,4 +13,6 @@ export const paths: Record<ScreenName, string> = {
 
   ProfileTab: "/user",
   Profile: "/user/profile",
+
+  Favorites: "/restaurants/favorites",
 } as const;

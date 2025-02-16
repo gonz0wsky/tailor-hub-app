@@ -2,6 +2,10 @@ import { RouteProp } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { FC } from "react";
 
+export type SharedNavigatorParamList = {
+  RestaurantDetail: { id: string };
+};
+
 export type PublicNavigatorParamList = {
   Onboarding: undefined;
   SignIn: undefined;
@@ -9,9 +13,12 @@ export type PublicNavigatorParamList = {
 
 export type RestaurantNavigatorParamList = {
   RestaurantCreate: undefined;
-  RestaurantDetail: { id: string };
   Restaurants: undefined;
-};
+} & SharedNavigatorParamList;
+
+export type FavoritesNavigatorParamList = {
+  Favorites: undefined;
+} & SharedNavigatorParamList;
 
 export type ProfileNavigatorParamList = {
   Profile: undefined;
@@ -26,7 +33,8 @@ export type TabNavigatorParamList = {
 export type AllNavigatorParamList = PublicNavigatorParamList &
   RestaurantNavigatorParamList &
   ProfileNavigatorParamList &
-  TabNavigatorParamList;
+  TabNavigatorParamList &
+  FavoritesNavigatorParamList;
 
 export type ScreenName = keyof AllNavigatorParamList;
 
