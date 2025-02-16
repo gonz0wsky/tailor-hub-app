@@ -1,4 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
+import { GetImageFromGalleryUseCase } from "@shared/integrations/gallery/GetImageFromGalleryUseCase";
+import { ImagePickerImpl } from "@shared/integrations/gallery/ImagePickerImpl";
 import { useCallback, useState } from "react";
 
 export const useRestaurantCreateViewModel = () => {
@@ -10,5 +12,17 @@ export const useRestaurantCreateViewModel = () => {
     canGoBack() && goBack();
   }, [canGoBack, goBack]);
 
-  return { state, handlePressCancel };
+  const handleAddImage = useCallback(async () => {
+    try {
+      const getImage = new GetImageFromGalleryUseCase(new ImagePickerImpl());
+
+      const image = await getImage.execute();
+
+      return image.path;
+    } catch (error) {
+      return "";
+    }
+  }, []);
+
+  return { state, handlePressCancel, handleAddImage };
 };

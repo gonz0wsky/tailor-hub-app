@@ -12,7 +12,8 @@ export const RestaurantCreateView: ScreenComponent<"RestaurantCreate"> = () => {
   const t = useTheme();
   const { i18n } = useLingui();
 
-  const { state, handlePressCancel } = useRestaurantCreateViewModel();
+  const { state, handlePressCancel, handleAddImage } =
+    useRestaurantCreateViewModel();
 
   return (
     <SafeAreaView style={[a.flex_1, t.atoms.background.primary]}>
@@ -27,7 +28,11 @@ export const RestaurantCreateView: ScreenComponent<"RestaurantCreate"> = () => {
             size={24}
             color={t.atoms.components.icon.color.secondary.color}
           />
-          <NewRestaurantForm style={[a.mt_2xl]} onSubmit={() => {}} />
+          <NewRestaurantForm
+            style={[a.mt_2xl]}
+            onSubmit={() => {}}
+            onAddImage={handleAddImage}
+          />
           <Button
             style={[a.mt_sm]}
             title={i18n.t("Cancelar")}

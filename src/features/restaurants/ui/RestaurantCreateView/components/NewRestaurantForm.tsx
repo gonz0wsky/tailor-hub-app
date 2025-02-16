@@ -1,4 +1,4 @@
-import { atoms as a, useTheme } from "@core/layout";
+import { atoms as a } from "@core/layout";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLingui } from "@lingui/react";
 import Button from "@shared/ui/components/Button";
@@ -23,11 +23,11 @@ type NewRestaurantFormData = {
 
 type Props = {
   onSubmit: (data: NewRestaurantFormData) => void;
+  onAddImage: () => Promise<string>;
   style?: ViewStyle[];
 };
 
-const NewRestaurantForm: FC<Props> = ({ onSubmit, style }) => {
-  const t = useTheme();
+const NewRestaurantForm: FC<Props> = ({ onSubmit, onAddImage, style }) => {
   const { i18n } = useLingui();
 
   const { control, handleSubmit } = useForm<NewRestaurantFormData>({
@@ -57,11 +57,7 @@ const NewRestaurantForm: FC<Props> = ({ onSubmit, style }) => {
   return (
     <View style={[style]}>
       <ImagePicker
-        onAddImage={() =>
-          Promise.resolve(
-            "https://static.dezeen.com/uploads/2019/07/lucky-cat-restaurant-interiors-london-afroditi-krassa_dezeen_2364_col_13-852x568.jpg"
-          )
-        }
+        onAddImage={onAddImage}
         style={[a.align_self_center]}
         name="image"
         control={control}
