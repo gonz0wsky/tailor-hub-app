@@ -37,11 +37,8 @@ export const BottomBar: FC<BottomTabBarProps> = ({ navigation, state }) => {
           testID={`bottom-tab-${index}`}
           onPress={onPress}
           style={[
-            {
-              paddingBottom: Math.max(safe.bottom, 10),
-              paddingTop: 10,
-              height: 72,
-            },
+            a.pb_safe(safe.bottom, a.pb_lg.paddingBottom),
+            a.pt_lg,
             a.flex_1,
             a.align_center,
           ]}
